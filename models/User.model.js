@@ -30,7 +30,6 @@ const userSchema = new Schema(
     },
     languages: {
       type: String,
-      required: true,
     },
     age: {
       type: Number,
