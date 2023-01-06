@@ -83,4 +83,13 @@ router.post("/services/:id/edit", (req, res, next) => {
     })
 })
 
+// DELETE: route to delete a posted service from the db
+router.post('/services/:id/delete', (req, res, next) => {
+    const { id } = req.params;
+   
+    Service.findByIdAndDelete(id)
+      .then(() => res.redirect('/services'))
+      .catch(error => next(error));
+  });
+
 module.exports = router;
