@@ -35,7 +35,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
 
   // Check that email is written corretly
-  const regexEmail = /S+@S+.S+/;
+  const regexEmail = /^\S+@\S+\.\S+$/;
   if (!regexEmail.test(email)) {
     res.status(400).render("auth/signup", {
       errorMessage:
@@ -44,9 +44,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
     return;
   }
 
-  if (password.length < 6) {
+  if (password.length < 8) {
     res.status(400).render("auth/signup", {
-      errorMessage: "Your password needs to be at least 6 characters long.",
+      errorMessage: "Your password needs to be at least 8 characters long.",
     });
 
     return;
@@ -57,7 +57,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (!regexPW.test(password)) {
     res.status(400).render("auth/signup", {
       errorMessage:
-        "Password needs to have at least 6 characters and must contain at least one number, one lowercase and one uppercase letter.",
+        "Password needs to have at least 8 characters and must contain at least one number, one lowercase and one uppercase letter.",
     });
     return;
   }
