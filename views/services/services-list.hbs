@@ -1,0 +1,16 @@
+<h2>This is Services List Page</h2>
+
+{{#each services}}
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{image}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">
+                Service Type: {{serviceType}} 
+            </p>
+            <a href="/services/{{_id}}" class="btn btn-primary">More Details</a>
+        </div>
+    </div>
+{{/each}}
+
+<a href="services/create">Create</a>

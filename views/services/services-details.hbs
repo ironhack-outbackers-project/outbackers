@@ -1,0 +1,17 @@
+<h1>{{title}}</h1>
+<hr>
+    <p>Description: {{description}}</p>
+    <p>Country: {{country}}</p>
+    <p>Language: {{language}}</p>
+    <p>Date: {{date}}</p>
+    <br />
+    <p>Creator: {{creator}}</p>
+<hr>
+
+
+<form action="/services/{{_id}}/delete" method="POST">
+  <button>Delete</button>
+</form>
+
+<a href="/services/{{_id}}/edit">Edit</a> |
+<a href="/services">Back</a>
