@@ -1,1 +1,97 @@
-<h2>This is the page to edit post</h2>
+<h2>Edit the post: {{services.title}} </h2>
+
+<form action="/services/{{services._id}}/edit" method="post">
+    <div class="container">
+    <div class="row">
+        <div class="col">
+            <label>Title:</label>
+            <input class="form-control" type="text" name="title" value="{{services.title}}" />
+        </div>
+        <div class="col">
+            <label>Service Type: 
+                <select class="form-select" name="serviceType" value="{{services.serviceType}}">
+                    <option>Job</option>
+                    <option>Housing</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Description:</label>
+            <textarea class="form-control" name="description" cols="30" rows="4">{{services.description}}</textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Country:    
+                <select class="form-control" name="country" value="{{services.country}}">
+                    <option>Choose one</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Costa Rica">Costa Rica</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Malta">Malta</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Panama">Panama</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="Venezuela">Venezuela</option>
+                </select>
+            </label>
+        </div>
+        <div class="col">
+            <label>City:
+                <input class="form-control" type="text" name="city" value="{{services.city}}">
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Language:
+                <select name="language" value="{{services.language}}" class="form-control" multiple >
+                    <option>English</option>
+                    <option>Portuguese</option>
+                    <option>Spanish</option>
+                    <option>German</option>
+                    <option>French</option>
+                    <option>Italian</option>
+                    {{!-- <option>Other</option> with a text box to specify --}}
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Date:
+                <input class="form-control" type="date" name="date" value="{{services.date}}" />
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Image:
+                <input class="form-control" type="file" name="image" value="{{services.image}}">
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+             <label>Creator:
+                <input class="form-control" type="text" name="creator" value="{{services.creator}}" />
+            </label>
+        </div>
+    </div>
+   
+    <button class="btn btn-primary" type="submit">Update</button>
+</form>
+
+<a href="/services">Back</a>
+
+{{!-- error message for validation --}}
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}
