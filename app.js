@@ -23,6 +23,12 @@ const projectName = "outbackers";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+//store user details in app.locals (so that is is available in handlebars)
+app.use((req, res, next) => {
+  app.locals.userDetails = req.session.currentUser;
+  next();
+});
+
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
@@ -30,7 +36,7 @@ app.use("/", indexRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
-app.use('/', require("./routes/service.routes"));
+app.use("/", require("./routes/service.routes"));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
