@@ -43,17 +43,14 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
 
   //   ! This regular expression checks password for special characters and minimum length
-  /*
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
-    res
-      .status(400)
-      .render("auth/signup", {
-        errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter."
+    res.status(400).render("auth/signup", {
+      errorMessage:
+        "Password needs to have at least 6 characters and must contain at least one number, one lowercase and one uppercase letter.",
     });
     return;
   }
-  */
 
   // Create a new user - start by hashing the password
   bcrypt
@@ -101,9 +98,9 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 
   // Here we use the same logic as above
   // - either length based parameters or we check the strength of a password
-  if (password.length < 6) {
+  if (password.length < 8) {
     return res.status(400).render("auth/login", {
-      errorMessage: "Your password needs to be at least 6 characters long.",
+      errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
 

@@ -15,10 +15,35 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
       lowercase: true,
+      // match: "/S+@S+.S+/",
     },
     password: {
       type: String,
       required: true,
+    },
+    avatarUrl: {
+      type: String,
+      default: "images/default-avatar.png",
+    },
+    fullName: {
+      type: String,
+    },
+    languages: {
+      type: String,
+      required: true,
+    },
+    age: {
+      type: Number,
+      min: 18,
+      max: 122,
+    },
+    nationality: {
+      type: String,
+      default: "World Citizen",
+    },
+    about: {
+      type: String,
+      default: "Write something about you in 2-3 sentences.",
     },
   },
   {
