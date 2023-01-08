@@ -14,6 +14,7 @@ const serviceSchema = new Schema(
             type: String,
             required: true
         },
+        city: String,
         language: [String],
         date: Date,
         serviceType: {
@@ -24,7 +25,10 @@ const serviceSchema = new Schema(
             type: String,
             default: '../public/images/default-img.png',
         },
-        creator: String
+        creator: {
+            type: String,
+            required: [true, 'Your name is required'],
+        }
     },
     {
         timestamps: true
