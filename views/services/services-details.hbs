@@ -1,18 +1,57 @@
-<h1>{{title}}</h1>
+<div class="container">
+    <div class="row p-1">
+      {{!-- details of the posted service --}}
+      <div class="col-12 col-md-6 d-flex">
+          <div class="card product flex-fill">
+              <img class="card-img-top" src="{{image}}" alt="Card image">
+              <div class="card-body">
+                  <h5 class="card-title">{{title}}</h5>
+                  <p class="card-text">
+                      <hr />
+                      <p><strong>Description:</strong> {{description}}</p>
+                      <p><strong>Country:</strong> {{country}}</p>
+                      <p><strong>City:</strong>  {{city}}</p>
+                      <p><strong>Language:</strong> {{language}}</p>
+                      <p><strong>Date:</strong> {{dateFrom}} - {{dateTo}}</p>
+                      <hr />
+                      <p><strong>Creator:</strong> {{creator}}</p>
 
-<hr>
-    <p>Description: {{description}}</p>
-    <p>Country: {{country}}</p>
-    <p>City: {{city}}</p>
-    <p>Language: {{language}}</p>
-    <p>Date: {{date}}</p>
-    <br />
-    <p>Creator: {{creator}}</p>
-<hr>
+                      {{!-- if logged in / and is the creator can edit and delete post --}}
+                      <div class="d-flex justify-content-end">
+                        <a href="/services/{{_id}}/edit" class="btn btn-light">Edit</a>
+                        <form action="/services/{{_id}}/delete" method="POST">
+                          <button class="btn btn-primary">Delete</button>
+                        </form>
+                      </div>
 
-<form action="/services/{{_id}}/delete" method="POST">
-  <button>Delete</button>
-</form>
+                  </p>
+              </div>
+          </div>
+      </div>
+      {{!-- contact form --}}
+      <div class="col-12 col-md-6 d-flex">
+          <div class="card product flex-fill">
+            <form class="p-3">
+              <h3>Get in touch</h3>
+              <div class="mb-3">
+                <label>Email address</label>
+                <input type="email" class="form-control" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label>Send a personalised message</label>
+                <textarea class="form-control" rows="6"></textarea>
+              </div>
+              <div class="mb-3 d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+      </div>
 
-<a href="/services">Back</a> |
-<a href="/services/{{_id}}/edit">Edit</a>
+  </div>
+</div>
+
+{{!-- error message for validation --}}
+{{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+{{/if}}
