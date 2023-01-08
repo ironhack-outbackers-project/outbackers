@@ -4,22 +4,20 @@ const serviceSchema = new Schema(
     {
         title: {
             type: String,
-            required: [true, 'Title is required'],
+            required: true,
         },
         description: {
             type: String,
-            required: [true, 'Description is required'],
+            required: true,
         },
-        country: {
-            type: String,
-            required: true
-        },
+        country: String,
         city: String,
         language: [String],
-        date: Date,
+        dateFrom: Date,
+        dateTo: Date,
         serviceType: {
             type: String,
-            enum: ['Job', 'Stay']
+            enum: ['Job', 'Housing']
         },
         image: {
             type: String,
@@ -27,7 +25,7 @@ const serviceSchema = new Schema(
         },
         creator: {
             type: String,
-            required: [true, 'Your name is required'],
+            required: true,
         }
     },
     {

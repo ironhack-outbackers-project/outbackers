@@ -1,18 +1,21 @@
 const router = require("express").Router();
 
 const Service = require("../models/Service.model");
+// const countryArr = require("../data/countries.js"); // array of country list
 
 // READ: display list of services
-router.get("/services", (req, res, next) => {
-  Service.find()
-    .then((servicesFromDB) => {
-      res.render("services/services-list", { services: servicesFromDB });
-    })
-    .catch((error) => {
-      console.log("Error displaying all services", error);
-      next(error);
-    });
-});
+router.get('/services', (req, res, next) => {
+
+    Service.find()
+      .then(servicesFromDB => {
+        res.render('services/services-list', {services: servicesFromDB})
+      })
+      .catch(error => {
+        console.log('Error displaying all services', error);
+        next(error);
+      });
+
+  });
 
 // CREATE: display form
 router.get("/services/create", (req, res, next) => {
@@ -58,9 +61,19 @@ router.post("/services/create", (req, res, next) => {
       next(error);
     });
 =======
-    const {title, description, country, city, language, date, serviceType, image, creator} = req.body;
+    const {title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator} = req.body;
 
-    Service.create({title, description, country,city, language, date, serviceType, image, creator})
+    // check if title, description and creator are provided
+    if (title === "" || description === "" || creator === "") {
+    res.status(400).render("services/service-create", {
+      errorMessage:
+        "All fields are mandatory. Please provide a title, description and creator's name.",
+    });
+    return;
+
+    }
+
+    Service.create({title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator})
     .then(() => res.redirect("/services"))
     .catch(error => {
         console.log("Error processing form", error);
@@ -93,6 +106,7 @@ router.get("/services/:id/edit", (req, res, next) => {
     const {id} = req.params;
 
     Service.findById(id)
+    // .populate('country', 'language', 'serviceType', 'dateFrom', 'dateTo')
     .then(editService => {
         res.render("services/service-edit", {services: editService});
     })
@@ -105,9 +119,19 @@ router.get("/services/:id/edit", (req, res, next) => {
 // UPDATE: display form to actually update a specify service
 router.post("/services/:id/edit", (req, res, next) => {
     const {id} = req.params;
-    const {title, serviceType, description, country, city, language, date, image, creator} = req.body;
+    const {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator} = req.body;
 
-    Service.findByIdAndUpdate(id, {title, serviceType, description, country, city, language, date, image, creator}, {new: true})
+    // check if title, description and creator are provided
+    if (title === "" || description === "" || creator === "") {
+        res.status(400).render("services/service-create", {
+          errorMessage:
+            "All fields are mandatory. Please provide a title, description and creator's name.",
+        });
+        return;
+    
+    }
+
+    Service.findByIdAndUpdate(id, {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator}, {new: true})
     .then(() => res.redirect(`/services/${id}`))
     .catch(error => {
         console.log('Error displaying form for editing', error);
