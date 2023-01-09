@@ -4,8 +4,8 @@ const Recom = require("../models/Recom.model");
 //const User = require("../models/User.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
-// const isLoggedOut = require("../middleware/isLoggedOut");
-// const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 // const countryArr = require("../data/countries.js"); // array of country list
 // console.log(countryArr)
@@ -25,7 +25,7 @@ router.get("/recommendations", (req, res, next) => {
 });
 
 // CREATE: display form
-router.get("/recommendations/create", (req, res, next) => {
+router.get("/recommendations/create", isLoggedIn, (req, res, next) => {
   Recom.find()
     .then((recommendationsArr) => {
       res.render("recommendations/recom-create", { recommendationsArr });
@@ -37,86 +37,105 @@ router.get("/recommendations/create", (req, res, next) => {
 });
 
 //CREATE: process form
-router.post(
-  "/recommendations/create",
-  /*isLoggedIn,*/ (req, res, next) => {
-    const {
-      title,
-      description,
-      advice,
-      country,
-      city,
-      image,
-      creator,
-      // posts,
-    } = req.body;
+router.post("/recommendations/create", isLoggedIn, (req, res, next) => {
+  const {
+    title,
+    description,
+    advice,
+    country,
+    city,
+    image,
+    creator,
+    // posts,
+  } = req.body;
 
-    // check if title, description and creator are provided
-    if (title === "" || description === "" || creator === "") {
-      res.status(400).render("recommendations/recom-create", {
-        errorMessage:
-          "All fields are mandatory. Please provide a title, description and creator's name.",
-      });
-      return;
-    }
-
-    Recom.create({
-      title,
-      description,
-      advice,
-      country,
-      city,
-      image,
-      creator,
-      // posts,
-    })
-      .then(() => res.redirect("/recommendations"))
-      .catch((error) => {
-        console.log("Error processing form", error);
-        res.render("recommendations/recom-create");
-
-        next(error);
-      });
+  // check if title, description and creator are provided
+  if (title === "" || description === "" || creator === "") {
+    res.status(400).render("recommendations/recom-create", {
+      errorMessage:
+        "All fields are mandatory. Please provide a title, description and creator's name.",
+    });
+    return;
   }
-);
+
+  Recom.create({
+    title,
+    description,
+    advice,
+    country,
+    city,
+    image,
+    creator,
+    // posts,
+  })
+    .then(() => res.redirect("/recommendations"))
+    .catch((error) => {
+      console.log("Error processing form", error);
+      res.render("recommendations/recom-create");
+
+      next(error);
+    });
+});
 
 // READ: Services details of a specific service
-router.get("/services/:id", (req, res, next) => {
+router.get("/recommendations/:id", (req, res, next) => {
   const { id } = req.params;
 
-  Service.findById(id)
-    .then((serviceDetails) => {
-      res.render("services/services-details", serviceDetails);
+  Recom.findById(id)
+    .then((recommendationDetails) => {
+      res.render("recommendations/recom-details", recommendationDetails);
     })
     .catch((error) => {
-      console.log("Error displaying details of a specific service", error);
+      console.log(
+        "Error displaying details of a specific recommendation",
+        error
+      );
       next();
     });
 });
 
-// UPDATE: display form to update a specify service
-router.get(
-  "/services/:id/edit",
-  /*isLoggedIn,*/ (req, res, next) => {
-    const { id } = req.params;
+// UPDATE: display form to update a specific recommendation
+router.get("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
+  const { id } = req.params;
 
-    Service.findById(id)
-      .then((editService) => {
-        res.render("services/service-edit", { services: editService });
-      })
-      .catch((error) => {
-        console.log("Error displaying form for editing", error);
-        next();
+  Recom.findById(id)
+    .then((editRecommendation) => {
+      res.render("recommendations/recom-edit", {
+        recommendations: editRecommendation,
       });
-  }
-);
+    })
+    .catch((error) => {
+      console.log("Error displaying form for editing", error);
+      next();
+    });
+});
 
-// UPDATE: display form to actually update a specify service
-router.post(
-  "/services/:id/edit",
-  /*isLoggedIn,*/ (req, res, next) => {
-    const { id } = req.params;
-    const {
+// UPDATE: display form to actually update a specific service
+router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
+  const { id } = req.params;
+  const {
+    title,
+    description,
+    advice,
+    country,
+    city,
+    image,
+    creator,
+    // posts,
+  } = req.body;
+
+  // check if title, description and creator are provided
+  if (title === "" || description === "" || creator === "") {
+    res.status(400).render("recommendations/recom-create", {
+      errorMessage:
+        "All fields are mandatory. Please provide a title, description and creator's name.",
+    });
+    return;
+  }
+
+  Service.findByIdAndUpdate(
+    id,
+    {
       title,
       serviceType,
       description,
@@ -128,48 +147,22 @@ router.post(
       image,
       creator,
       posts,
-    } = req.body;
-
-    // check if title, description and creator are provided
-    if (title === "" || description === "" || creator === "") {
-      res.status(400).render("services/service-create", {
-        errorMessage:
-          "All fields are mandatory. Please provide a title, description and creator's name.",
-      });
-      return;
-    }
-
-    Service.findByIdAndUpdate(
-      id,
-      {
-        title,
-        serviceType,
-        description,
-        country,
-        city,
-        language,
-        dateFrom,
-        dateTo,
-        image,
-        creator,
-        posts,
-      },
-      { new: true }
-    )
-      .then(() => res.redirect(`/services/${id}`))
-      .catch((error) => {
-        console.log("Error displaying form for editing", error);
-        next();
-      });
-  }
-);
+    },
+    { new: true }
+  )
+    .then(() => res.redirect(`/services/${id}`))
+    .catch((error) => {
+      console.log("Error displaying form for editing", error);
+      next();
+    });
+});
 
 // DELETE: route to delete a posted service from the db
 router.post("/services/:id/delete", (req, res, next) => {
   const { id } = req.params;
 
-  Service.findByIdAndDelete(id)
-    .then(() => res.redirect("/services"))
+  Recom.findByIdAndDelete(id)
+    .then(() => res.redirect("/recommendations"))
     .catch((error) => next(error));
 });
 
