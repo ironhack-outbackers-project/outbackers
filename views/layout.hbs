@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{appTitle}}</title>
+    <title>Outbackers</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -19,30 +19,17 @@
   <body>
 
     <header>
+      {{!-- nav bar --}}
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
 
           <a class="navbar-brand" href="/">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2350/2350828.png"
-              alt="Logo"
-              width="30"
-              height="24"
-              class="d-inline-block align-text-top"
-            />
+            <img src="https://cdn-icons-png.flaticon.com/512/6904/6904112.png" alt="Logo" width="30" height="25" class="d-inline-block align-text-top" />
             Outbackers
           </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon" ></span></button>
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
@@ -51,48 +38,39 @@
 
               <li class="nav-item">
               <li class="nav-item dropdown">
-                <a
-                  class="nav-link active dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Services
-                </a>
+                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Services </a>
+                
+                {{!-- dropdown menu --}}
                 <ul class="dropdown-menu">
                   {{#if userDetails}}
-                    <li><a class="dropdown-item" href="/services"> List of services</a></li>
+                    <li><a class="dropdown-item" href="/services">List of Services</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="/services/create">Post a service</a></li>
+                    <li><a class="dropdown-item" href="/services/create">Create a post</a></li>
                   {{else}}
-                    <li><a class="dropdown-item" href="/services"> List of services</a></li>
+                    <li><a class="dropdown-item" href="/services">List of Services</a></li>
                   {{/if}}
                 </ul>
+
               </li>
             </ul>
-              <span class="navbar-text">
-                <li class="nav-link active">
-                  {{#if userDetails}}
-                    Logged in as:
-                    {{userDetails.username}}
-                      <a class="btn btn-outline-success" aria-current="page" href="/auth/logout">Logout</a>
-                  {{else}}
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li><a
-                          class="btn btn-outline-success"
-                          aria-current="page"
-                          href="/auth/signup"
-                        >Signup</a></li>
-                      <li><a
-                          class="btn btn-outline-success"
-                          aria-current="page"
-                          href="/auth/login"
-                        >Login</a></li>
-                    </ul>
-                  {{/if}}
-                </li>
-              </span>
+
+            <span class="navbar-text">
+              <li class="nav-link active">
+                {{#if userDetails}}
+                  Logged in as: {{userDetails.username}}
+                  <a class="btn btn-outline-secondary" aria-current="page" href="/auth/logout">Logout</a>
+                {{else}}
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li>
+                      <a class="btn btn-outline-secondary" aria-current="page" href="/auth/signup">Signup</a>
+                    </li>
+                    <li>
+                      <a class="btn btn-outline-secondary" aria-current="page" href="/auth/login">Login</a>
+                    </li>
+                  </ul>
+                {{/if}}
+              </li>
+            </span>
 
           </div>
         </div>
