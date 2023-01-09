@@ -31,7 +31,6 @@ router.get("/services/create", (req, res, next) => {
 
 //CREATE: process form
 router.post("/services/create", (req, res, next) => {
-<<<<<<< HEAD
   const {
     title,
     description,
@@ -60,7 +59,6 @@ router.post("/services/create", (req, res, next) => {
 
       next(error);
     });
-=======
     const {title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator} = req.body;
 
     // check if title, description and creator are provided
@@ -81,7 +79,6 @@ router.post("/services/create", (req, res, next) => {
             
         next(error);
     })
->>>>>>> 726a41a7b5b64704056c0c1017af97b000a70c02
 });
 
 // READ: Services details of a specific service
