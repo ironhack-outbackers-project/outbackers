@@ -1,16 +1,26 @@
-<h2>This is Services List Page</h2>
+<div class="container">
+    <h2>Find your next stay or job </h2>
+    <br />
 
-{{#each services}}
-    <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{image}}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">
-                Service Type: {{serviceType}} 
-            </p>
-            <a href="/services/{{_id}}" class="btn btn-primary">More Details</a>
+    <div class="row">
+        {{#each services}}
+        <div class="col-12 col-md-4 d-flex">
+            <div class="card product flex-fill">
+                <img class="card-img-top" src="{{image}}" alt="Card image">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">
+                        Service Type: {{serviceType}}
+                    </p>
+                    <a href="/services/{{_id}}" class="btn btn-primary">More Details</a>
+                </div>
+            </div>
         </div>
+        {{/each}}
     </div>
-{{/each}}
-
-<a href="services/create">Create</a>
+    
+    <br /> <br />
+    {{#if userDetails}}
+        <a href="services/create" class="btn btn-primary">Create a new post</a>
+    {{/if}}
+</div>

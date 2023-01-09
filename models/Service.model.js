@@ -6,27 +6,24 @@ const serviceSchema = new Schema(
             type: String,
             required: true,
         },
+        serviceType: {
+            type: String,
+            enum: ['Job', 'Housing']
+        },
         description: {
             type: String,
             required: true,
         },
         country: String,
         city: String,
-        language: [String],
+        language: String,
         dateFrom: Date,
         dateTo: Date,
-        serviceType: {
-            type: String,
-            enum: ['Job', 'Housing']
-        },
         image: {
             type: String,
             default: '../public/images/default-img.png',
         },
-        creator: {
-            type: String,
-            required: true,
-        }
+        creator: String
     },
     {
         timestamps: true

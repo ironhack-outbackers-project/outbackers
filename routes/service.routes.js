@@ -1,10 +1,19 @@
 const router = require("express").Router();
 
 const Service = require("../models/Service.model");
-// const countryArr = require("../data/countries.js"); // array of country list
+const User = require("../models/User.model");
+
+// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
+const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
+
+const countryArr = require("../data/countries.js"); // array of country list
+// console.log(countryArr)
+
 
 // READ: display list of services
 router.get("/services", (req, res, next) => {
+    
   Service.find()
     .then((servicesFromDB) => {
       res.render("services/services-list", { services: servicesFromDB });
@@ -17,6 +26,7 @@ router.get("/services", (req, res, next) => {
 
 // CREATE: display form
 router.get("/services/create", (req, res, next) => {
+
   Service.find()
     .then((servicesArr) => {
       res.render("services/service-create", { servicesArr });
@@ -28,36 +38,8 @@ router.get("/services/create", (req, res, next) => {
 });
 
 //CREATE: process form
-router.post("/services/create", (req, res, next) => {
-  const {
-    title,
-    description,
-    country,
-    language,
-    date,
-    serviceType,
-    image,
-    creator,
-  } = req.body;
-
-  Service.create({
-    title,
-    description,
-    country,
-    language,
-    date,
-    serviceType,
-    image,
-    creator,
-  })
-    .then(() => res.redirect("/services"))
-    .catch((error) => {
-      console.log("Error processing form", error);
-      res.render("services/service-create");
-
-      next(error);
-    });
-  // const {title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator} = req.body;
+router.post("/services/create", isLoggedIn, (req, res, next) => {
+    const {title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator, posts} = req.body;
 
   // check if title, description and creator are provided
   if (title === "" || description === "" || creator === "") {
@@ -68,18 +50,7 @@ router.post("/services/create", (req, res, next) => {
     return;
   }
 
-  Service.create({
-    title,
-    description,
-    country,
-    city,
-    language,
-    dateFrom,
-    dateTo,
-    serviceType,
-    image,
-    creator,
-  })
+    Service.create({title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator, posts})
     .then(() => res.redirect("/services"))
     .catch((error) => {
       console.log("Error processing form", error);
@@ -104,11 +75,10 @@ router.get("/services/:id", (req, res, next) => {
 });
 
 // UPDATE: display form to update a specify service
-router.get("/services/:id/edit", (req, res, next) => {
-  const { id } = req.params;
+router.get("/services/:id/edit", isLoggedIn, (req, res, next) => {
+    const {id} = req.params;
 
   Service.findById(id)
-    // .populate('country', 'language', 'serviceType', 'dateFrom', 'dateTo')
     .then((editService) => {
       res.render("services/service-edit", { services: editService });
     })
@@ -119,20 +89,9 @@ router.get("/services/:id/edit", (req, res, next) => {
 });
 
 // UPDATE: display form to actually update a specify service
-router.post("/services/:id/edit", (req, res, next) => {
-  const { id } = req.params;
-  const {
-    title,
-    serviceType,
-    description,
-    country,
-    city,
-    language,
-    dateFrom,
-    dateTo,
-    image,
-    creator,
-  } = req.body;
+router.post("/services/:id/edit", isLoggedIn, (req, res, next) => {
+    const {id} = req.params;
+    const {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator, posts} = req.body;
 
   // check if title, description and creator are provided
   if (title === "" || description === "" || creator === "") {
@@ -143,22 +102,7 @@ router.post("/services/:id/edit", (req, res, next) => {
     return;
   }
 
-  Service.findByIdAndUpdate(
-    id,
-    {
-      title,
-      serviceType,
-      description,
-      country,
-      city,
-      language,
-      dateFrom,
-      dateTo,
-      image,
-      creator,
-    },
-    { new: true }
-  )
+    Service.findByIdAndUpdate(id, {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator, posts}, {new: true})
     .then(() => res.redirect(`/services/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);
