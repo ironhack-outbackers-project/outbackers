@@ -1,2 +1,10 @@
 <h1>{{appTitle}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+
+{{#if userDetails}}
+  <p>Welcome {{userDetails.username}}! </p>
+
+{{else}}
+  <p>Welcome to Outbackers!</p>
+  <p>Sign in to your account or create a new one to be part of the community!</p>
+
+{{/if}}

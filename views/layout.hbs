@@ -19,31 +19,122 @@
   <body>
 
     <header>
-      <nav>
+      <!-- this is the old one
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Outbackers</a>
+          <a class="navbar-brand" href="/">Home</a>
+          |
+          <a class="navbar-brand" href="/services"> List of Services</a>
+          |
+          <a class="navbar-brand" href="javascript:history.back()">Back</a>
+        </div>
 
         <div>
           {{#if userDetails}}
             Hello
             {{userDetails.email}},
             <form action="/auth/logout" method="get">
-              <button>Logout</button>
+              <button class="navbar-toggler navbar-dark">Logout</button>
             </form>
           {{else}}
-            <a href="/auth/signup">Register</a>
+            <a class="navbar-brand" href="/auth/signup">Register</a>
             |
-            <a href="/auth/login">Login</a>
+            <a class="navbar-brand" href="/auth/login">Login</a>
             |
           {{/if}}
         </div>
       </nav>
+      -->
+
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+
+          <a class="navbar-brand" href="/">
+            <img
+              src="../public/images/logo-outbackers.png"
+              alt="Logo"
+              width="30"
+              height="24"
+              class="d-inline-block align-text-top"
+            />
+            Outbackers
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+
+              <li class="nav-item">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link active dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Services
+                </a>
+                <ul class="dropdown-menu">
+                  {{#if userDetails}}
+                    <li><a class="dropdown-item" href="/services"> List of services</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="/services/create">Post a service</a></li>
+                  {{else}}
+                    <li><a class="dropdown-item" href="/services"> List of services</a></li>
+                  {{/if}}
+                </ul>
+              </li>
+            </ul>
+
+              <span class="navbar-text">
+
+                <li class="nav-link active">
+                  {{#if userDetails}}
+                    Logged in as:
+                    {{userDetails.username}}
+                      <a class="btn btn-outline-success" aria-current="page" href="/auth/logout">Logout</a>
+                    <!--
+                    <form action="/auth/logout" method="get">
+                      <button class="navbar-toggler navbar-dark">Logout</button>
+                    </form>
+                    -->
+                  {{else}}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li><a
+                          class="btn btn-outline-success"
+                          aria-current="page"
+                          href="/auth/signup"
+                        >Signup</a></li>
+                      <li><a
+                          class="btn btn-outline-success"
+                          aria-current="page"
+                          href="/auth/login"
+                        >Login</a></li>
+                    </ul>
+                  {{/if}}
+                </li>
+
+              </span>
+
+          </div>
+        </div>
+      </nav>
+
     </header>
-    <nav>
-      <a href="/">Home</a>
-      |
-      <a href="/services"> List of Services</a>
-      |
-      <a href="javascript:history.back()">Back</a>
-    </nav>
 
     {{{body}}}
 
