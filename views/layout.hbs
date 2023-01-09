@@ -19,34 +19,6 @@
   <body>
 
     <header>
-      <!-- this is the old one
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">Outbackers</a>
-          <a class="navbar-brand" href="/">Home</a>
-          |
-          <a class="navbar-brand" href="/services"> List of Services</a>
-          |
-          <a class="navbar-brand" href="javascript:history.back()">Back</a>
-        </div>
-
-        <div>
-          {{#if userDetails}}
-            Hello
-            {{userDetails.email}},
-            <form action="/auth/logout" method="get">
-              <button class="navbar-toggler navbar-dark">Logout</button>
-            </form>
-          {{else}}
-            <a class="navbar-brand" href="/auth/signup">Register</a>
-            |
-            <a class="navbar-brand" href="/auth/login">Login</a>
-            |
-          {{/if}}
-        </div>
-      </nav>
-      -->
-
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
 
@@ -99,19 +71,12 @@
                 </ul>
               </li>
             </ul>
-
               <span class="navbar-text">
-
                 <li class="nav-link active">
                   {{#if userDetails}}
                     Logged in as:
                     {{userDetails.username}}
                       <a class="btn btn-outline-success" aria-current="page" href="/auth/logout">Logout</a>
-                    <!--
-                    <form action="/auth/logout" method="get">
-                      <button class="navbar-toggler navbar-dark">Logout</button>
-                    </form>
-                    -->
                   {{else}}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li><a
@@ -127,13 +92,10 @@
                     </ul>
                   {{/if}}
                 </li>
-
               </span>
-
           </div>
         </div>
       </nav>
-
     </header>
 
     {{{body}}}
