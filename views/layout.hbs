@@ -89,39 +89,44 @@
                   Services
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="/services"> List of Services</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider" /></li>
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </li>
             </ul>
-            <span class="navbar-text">
+            
+              <span class="navbar-text">
 
-              <li class="nav-link active">
-                {{#if userDetails}}
-                  Logged in as:
-                  {{userDetails.username}}
-                  <form action="/auth/logout" method="get">
-                    <button class="navbar-toggler navbar-dark">Logout</button>
-                  </form>
-                {{else}}
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li><a
-                        class="nav-link active"
-                        aria-current="page"
-                        href="/auth/signup"
-                      >Signup</a></li>
-                    <li><a
-                        class="nav-link active"
-                        aria-current="page"
-                        href="/auth/login"
-                      >Login</a></li>
-                  </ul>
-                {{/if}}
-              </li>
+                <li class="nav-link active">
+                  {{#if userDetails}}
+                    Logged in as:
+                    {{userDetails.username}}
+                      <a class="nav-link active" aria-current="page" href="/auth/logout">Logout</a>
+                    <!--
+                    <form action="/auth/logout" method="get">
+                      <button class="navbar-toggler navbar-dark">Logout</button>
+                    </form>
+                    -->
+                  {{else}}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li><a
+                          class="nav-link active"
+                          aria-current="page"
+                          href="/auth/signup"
+                        >Signup</a></li>
+                      <li><a
+                          class="nav-link active"
+                          aria-current="page"
+                          href="/auth/login"
+                        >Login</a></li>
+                    </ul>
+                  {{/if}}
+                </li>
 
-            </span>
+              </span>
+
           </div>
         </div>
       </nav>
