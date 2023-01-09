@@ -38,6 +38,9 @@ app.use("/auth", authRoutes);
 
 app.use("/", require("./routes/service.routes"));
 
+const recomRoutes = require("./routes/recom.routes");
+app.use("/", recomRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
