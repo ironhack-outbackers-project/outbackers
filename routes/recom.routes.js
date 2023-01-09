@@ -19,7 +19,7 @@ router.get("/recommendations", (req, res, next) => {
       });
     })
     .catch((error) => {
-      console.log("Error displaying all recommendations", error);
+      console.log("Error displaying recommendations", error);
       next(error);
     });
 });
@@ -38,48 +38,42 @@ router.get("/recommendations/create", (req, res, next) => {
 
 //CREATE: process form
 router.post(
-  "/services/create",
+  "/recommendations/create",
   /*isLoggedIn,*/ (req, res, next) => {
     const {
       title,
       description,
+      advice,
       country,
       city,
-      language,
-      dateFrom,
-      dateTo,
-      serviceType,
       image,
       creator,
-      posts,
+      // posts,
     } = req.body;
 
     // check if title, description and creator are provided
     if (title === "" || description === "" || creator === "") {
-      res.status(400).render("services/service-create", {
+      res.status(400).render("recommendations/recom-create", {
         errorMessage:
           "All fields are mandatory. Please provide a title, description and creator's name.",
       });
       return;
     }
 
-    Service.create({
+    Recom.create({
       title,
       description,
+      advice,
       country,
       city,
-      language,
-      dateFrom,
-      dateTo,
-      serviceType,
       image,
       creator,
-      posts,
+      // posts,
     })
-      .then(() => res.redirect("/services"))
+      .then(() => res.redirect("/recommendations"))
       .catch((error) => {
         console.log("Error processing form", error);
-        res.render("services/service-create");
+        res.render("recommendations/recom-create");
 
         next(error);
       });
