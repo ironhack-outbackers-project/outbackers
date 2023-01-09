@@ -73,7 +73,6 @@ router.get("/services/:id/edit", (req, res, next) => {
     const {id} = req.params;
 
     Service.findById(id)
-    // .populate('country', 'language', 'serviceType', 'dateFrom', 'dateTo')
     .then(editService => {
         res.render("services/service-edit", {services: editService});
     })
