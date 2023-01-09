@@ -3,7 +3,7 @@ const router = require("express").Router();
 const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
+// Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
