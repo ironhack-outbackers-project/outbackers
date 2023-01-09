@@ -16,14 +16,17 @@ const serviceSchema = new Schema(
         },
         country: String,
         city: String,
-        language: String,
+        language: [String],
         dateFrom: Date,
         dateTo: Date,
         image: {
             type: String,
-            default: '../public/images/default-img.png',
+            default: 'https://cdn-icons-png.flaticon.com/512/834/834096.png',
         },
-        creator: String
+        creator: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
     },
     {
         timestamps: true

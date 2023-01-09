@@ -3,8 +3,8 @@
 
       {{!-- details of the posted service --}}
       <div class="col-12 col-md-6 d-flex">
-        <div class="card product flex-fill">
-          <img class="card-img-top" src="{{image}}" alt="Card image">
+        <div class="card product flex-fill" style="width: 15rem;">
+          <img class="card-img-top p-3" src="{{image}}" alt="Card image">
           <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <p class="card-text">
@@ -33,24 +33,29 @@
       </div>
 
       {{!-- contact form --}}
+      {{#if userDetails}}
       <div class="col-12 col-md-6 d-flex">
         <div class="card product flex-fill">
           <form class="p-3">
             <h3>Get in touch</h3>
+            <br />
+
             <div class="mb-3">
-              <label>Email address</label>
+              <label>Email</label>
               <input type="email" class="form-control" placeholder="name@example.com">
             </div>
             <div class="mb-3">
               <label>Send a personalised message</label>
               <textarea class="form-control" rows="6"></textarea>
             </div>
+
             <div class="mb-3 d-flex justify-content-end">
               <button class="btn btn-primary" type="submit">Submit</button>
             </div>
           </form>
         </div>
       </div>
+      {{/if}}
 
   </div>
 </div>

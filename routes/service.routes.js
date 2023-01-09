@@ -7,8 +7,9 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-const countryArr = require("../data/countries.js"); // array of country list
-// console.log(countryArr)
+// Require Country and Language List
+const countryArr = require("../data/countries.js");
+const languageArr = require("../data/languages.js");
 
 // READ: display list of services
 router.get("/services", (req, res, next) => {
@@ -26,7 +27,11 @@ router.get("/services", (req, res, next) => {
 router.get("/services/create", isLoggedIn, (req, res, next) => {
   Service.find()
     .then((servicesArr) => {
-      res.render("services/service-create", { servicesArr });
+      res.render("services/service-create", { 
+        servicesArr: servicesArr, 
+        countryArr: countryArr, 
+        languageArr: languageArr 
+      });
     })
     .catch((error) => {
       console.log("Error displaying form", error);
@@ -36,19 +41,9 @@ router.get("/services/create", isLoggedIn, (req, res, next) => {
 
 //CREATE: process form
 router.post("/services/create", isLoggedIn, (req, res, next) => {
-  const {
-    title,
-    description,
-    country,
-    city,
-    language,
-    dateFrom,
-    dateTo,
-    serviceType,
-    image,
-    creator,
-    posts,
-  } = req.body;
+    const {title, description, country, city, language, dateFrom, dateTo, serviceType, image, posts} = req.body;
+
+    const creator = req.session.currentUser._id;
 
   // check if title, description and creator are provided
   if (title === "" || description === "" || creator === "") {
@@ -59,19 +54,8 @@ router.post("/services/create", isLoggedIn, (req, res, next) => {
     return;
   }
 
-  Service.create({
-    title,
-    description,
-    country,
-    city,
-    language,
-    dateFrom,
-    dateTo,
-    serviceType,
-    image,
-    creator,
-    posts,
-  })
+    Service.create({title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator, posts})
+    // .populate('creator')
     .then(() => res.redirect("/services"))
     .catch((error) => {
       console.log("Error processing form", error);
@@ -101,7 +85,33 @@ router.get("/services/:id/edit", isLoggedIn, (req, res, next) => {
 
   Service.findById(id)
     .then((editService) => {
-      res.render("services/service-edit", { services: editService });
+      // dropdown list of country selected
+      const currentCountry = countryArr.find((countryName) => {
+        if(countryName === editService.country){
+          return true;
+        }
+        return false;
+      })
+
+      // dropdown list of languages selected
+      // const spokenLanguages = languageArr.map((languagesSelected) => {
+      //   if(languagesSelected === editService.language){
+      //     return true;
+      //   }
+      //   return false;
+      // })
+
+      // console.log(spokenLanguages)
+
+      res.render("services/service-edit", { 
+        service: editService, 
+        countryArr: countryArr, 
+        currentCountry: currentCountry,
+        languageArr: languageArr,
+        // spokenLanguages: spokenLanguages
+
+      });
+
     })
     .catch((error) => {
       console.log("Error displaying form for editing", error);
@@ -112,46 +122,18 @@ router.get("/services/:id/edit", isLoggedIn, (req, res, next) => {
 // UPDATE: display form to actually update a specific service
 router.post("/services/:id/edit", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
-  const {
-    title,
-    serviceType,
-    description,
-    country,
-    city,
-    language,
-    dateFrom,
-    dateTo,
-    image,
-    creator,
-    posts,
-  } = req.body;
+  const {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator} = req.body;
 
   // check if title, description and creator are provided
-  if (title === "" || description === "" || creator === "") {
+  if (title === "" || description === "") {
     res.status(400).render("services/service-create", {
       errorMessage:
-        "All fields are mandatory. Please provide a title, description and creator's name.",
+        "All fields are mandatory. Please provide title and description ",
     });
     return;
   }
 
-  Service.findByIdAndUpdate(
-    id,
-    {
-      title,
-      serviceType,
-      description,
-      country,
-      city,
-      language,
-      dateFrom,
-      dateTo,
-      image,
-      creator,
-      posts,
-    },
-    { new: true }
-  )
+  Service.findByIdAndUpdate(id, {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator}, { new: true })
     .then(() => res.redirect(`/services/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);
@@ -160,7 +142,7 @@ router.post("/services/:id/edit", isLoggedIn, (req, res, next) => {
 });
 
 // DELETE: route to delete a posted service from the db
-router.post("/services/:id/delete", (req, res, next) => {
+router.post("/services/:id/delete", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
 
   Service.findByIdAndDelete(id)
