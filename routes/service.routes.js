@@ -5,25 +5,25 @@ const Service = require("../models/Service.model");
 
 // READ: display list of services
 router.get("/services", (req, res, next) => {
-    Service.find()
+  Service.find()
     .then((servicesFromDB) => {
       res.render("services/services-list", { services: servicesFromDB });
-      })
+    })
     .catch((error) => {
       console.log("Error displaying all services", error);
-        next(error);
-      });
-  });
+      next(error);
+    });
+});
 
 // CREATE: display form
 router.get("/services/create", (req, res, next) => {
-    Service.find()
+  Service.find()
     .then((servicesArr) => {
-        res.render("services/service-create", { servicesArr });
+      res.render("services/service-create", { servicesArr });
     })
     .catch((error) => {
       console.log("Error displaying form", error);
-        next();
+      next();
     });
 });
 
@@ -59,14 +59,14 @@ router.post("/services/create", (req, res, next) => {
     });
   // const {title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator} = req.body;
 
-    // check if title, description and creator are provided
-    if (title === "" || description === "" || creator === "") {
+  // check if title, description and creator are provided
+  if (title === "" || description === "" || creator === "") {
     res.status(400).render("services/service-create", {
       errorMessage:
         "All fields are mandatory. Please provide a title, description and creator's name.",
     });
     return;
-    }
+  }
 
   Service.create({
     title,
@@ -82,24 +82,24 @@ router.post("/services/create", (req, res, next) => {
   })
     .then(() => res.redirect("/services"))
     .catch((error) => {
-        console.log("Error processing form", error);
+      console.log("Error processing form", error);
       res.render("services/service-create");
-            
-        next(error);
+
+      next(error);
     });
 });
 
 // READ: Services details of a specific service
 router.get("/services/:id", (req, res, next) => {
   const { id } = req.params;
-    
-    Service.findById(id)
+
+  Service.findById(id)
     .then((serviceDetails) => {
-        res.render("services/services-details", serviceDetails);
+      res.render("services/services-details", serviceDetails);
     })
     .catch((error) => {
-        console.log("Error displaying details of a specific service", error);
-        next();
+      console.log("Error displaying details of a specific service", error);
+      next();
     });
 });
 
@@ -107,20 +107,14 @@ router.get("/services/:id", (req, res, next) => {
 router.get("/services/:id/edit", (req, res, next) => {
   const { id } = req.params;
 
-<<<<<<< HEAD
-    Service.findById(id)
-    .then(editService => {
-        res.render("services/service-edit", {services: editService});
-=======
   Service.findById(id)
     // .populate('country', 'language', 'serviceType', 'dateFrom', 'dateTo')
     .then((editService) => {
       res.render("services/service-edit", { services: editService });
->>>>>>> b2f25b87ae2e61f55f8cf2640db5b4252f187fd9
     })
     .catch((error) => {
       console.log("Error displaying form for editing", error);
-        next();
+      next();
     });
 });
 
@@ -140,14 +134,14 @@ router.post("/services/:id/edit", (req, res, next) => {
     creator,
   } = req.body;
 
-    // check if title, description and creator are provided
-    if (title === "" || description === "" || creator === "") {
-        res.status(400).render("services/service-create", {
-          errorMessage:
-            "All fields are mandatory. Please provide a title, description and creator's name.",
-        });
-        return;
-    }
+  // check if title, description and creator are provided
+  if (title === "" || description === "" || creator === "") {
+    res.status(400).render("services/service-create", {
+      errorMessage:
+        "All fields are mandatory. Please provide a title, description and creator's name.",
+    });
+    return;
+  }
 
   Service.findByIdAndUpdate(
     id,
@@ -168,17 +162,17 @@ router.post("/services/:id/edit", (req, res, next) => {
     .then(() => res.redirect(`/services/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);
-        next();
+      next();
     });
 });
 
 // DELETE: route to delete a posted service from the db
 router.post("/services/:id/delete", (req, res, next) => {
-    const { id } = req.params;
-   
-    Service.findByIdAndDelete(id)
+  const { id } = req.params;
+
+  Service.findByIdAndDelete(id)
     .then(() => res.redirect("/services"))
     .catch((error) => next(error));
-  });
+});
 
 module.exports = router;
