@@ -24,7 +24,7 @@
 
           <a class="navbar-brand" href="/">
             <img
-              src="../public/images/logo-outbackers.png"
+              src="https://cdn-icons-png.flaticon.com/512/2350/2350828.png"
               alt="Logo"
               width="30"
               height="24"
@@ -71,19 +71,12 @@
                 </ul>
               </li>
             </ul>
-
               <span class="navbar-text">
-
                 <li class="nav-link active">
                   {{#if userDetails}}
                     Logged in as:
                     {{userDetails.username}}
                       <a class="btn btn-outline-success" aria-current="page" href="/auth/logout">Logout</a>
-                    <!--
-                    <form action="/auth/logout" method="get">
-                      <button class="navbar-toggler navbar-dark">Logout</button>
-                    </form>
-                    -->
                   {{else}}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li><a
@@ -99,7 +92,6 @@
                     </ul>
                   {{/if}}
                 </li>
-
               </span>
 
           </div>
