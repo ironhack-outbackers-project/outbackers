@@ -1,10 +1,11 @@
-<h1>{{appTitle}} 🚀</h1>
+<div class="inner">
+  <h1>Outbackers</h1>
 
-{{#if userDetails}}
-  <p>Welcome {{userDetails.username}}! </p>
+  {{#if userDetails}}
+    <p>Welcome {{userDetails.username}}! </p>
 
-{{else}}
-  <p>Welcome to Outbackers!</p>
-  <p>Sign in to your account or create a new one to be part of the community!</p>
-
-{{/if}}
+  {{else}}
+    <p>Welcome to Outbackers!</p>
+    <p>Sign in to your account or create a new one to be part of the community!</p>
+  {{/if}}
+</div>
