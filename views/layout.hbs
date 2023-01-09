@@ -52,7 +52,7 @@
 
           <a class="navbar-brand" href="/">
             <img
-              src="../ublic/images/logo-outbackers.png"
+              src="../public/images/logo-outbackers.png"
               alt="Logo"
               width="30"
               height="24"
@@ -89,21 +89,24 @@
                   Services
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/services"> List of Services</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  {{#if userDetails}}
+                    <li><a class="dropdown-item" href="/services"> List of services</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="/services/create">Post a service</a></li>
+                  {{else}}
+                    <li><a class="dropdown-item" href="/services"> List of services</a></li>
+                  {{/if}}
                 </ul>
               </li>
             </ul>
-            
+
               <span class="navbar-text">
 
                 <li class="nav-link active">
                   {{#if userDetails}}
                     Logged in as:
                     {{userDetails.username}}
-                      <a class="nav-link active" aria-current="page" href="/auth/logout">Logout</a>
+                      <a class="btn btn-outline-success" aria-current="page" href="/auth/logout">Logout</a>
                     <!--
                     <form action="/auth/logout" method="get">
                       <button class="navbar-toggler navbar-dark">Logout</button>
@@ -112,12 +115,12 @@
                   {{else}}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li><a
-                          class="nav-link active"
+                          class="btn btn-outline-success"
                           aria-current="page"
                           href="/auth/signup"
                         >Signup</a></li>
                       <li><a
-                          class="nav-link active"
+                          class="btn btn-outline-success"
                           aria-current="page"
                           href="/auth/login"
                         >Login</a></li>
