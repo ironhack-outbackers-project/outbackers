@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Take a look at other backpackers' recommendations! </h2>
+  <br />
+
+  <div class="row">
+    {{#each recommendation}}
+      <div class="col-12 col-md-4 d-flex">
+        <div class="card product flex-fill">
+          <img class="card-img-top" src="{{image}}" alt="Card image" />
+          <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">
+              Description:
+              {{description}}
+            </p>
+            <a href="/recommendation/{{_id}}" class="btn btn-primary">More
+              Details</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <br />
+  <br />
+  {{#if userDetails}}
+    <a href="/recommendations/create" class="btn btn-primary">Create a new
+      recommendation</a>
+  {{/if}}
+</div>
