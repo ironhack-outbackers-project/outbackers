@@ -133,7 +133,7 @@ router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
     return;
   }
 
-  Service.findByIdAndUpdate(
+  Recom.findByIdAndUpdate(
     id,
     {
       title,
@@ -150,7 +150,7 @@ router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
     },
     { new: true }
   )
-    .then(() => res.redirect(`/services/${id}`))
+    .then(() => res.redirect(`/recommendations/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);
       next();

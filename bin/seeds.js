@@ -17,9 +17,9 @@ mongoose
     console.error("Error connecting to mongo: ", err);
   });
 
-// Recom.collection.drop();  // Warning, drops book collection :)
-// Service.collection.drop();  // Warning, drops author collection :)
-// User.collection.drop();  // Warning, drops author collection :)
+// Recom.collection.drop(); // Warning, drops book collection :)
+// Service.collection.drop(); // Warning, drops author collection :)
+// User.collection.drop(); // Warning, drops author collection :)
 
 const users = [
   {
