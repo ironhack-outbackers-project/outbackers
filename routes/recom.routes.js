@@ -6,9 +6,10 @@ const Recom = require("../models/Recom.model");
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isCreator = require("../middleware/isCreator");
 
-// const countryArr = require("../data/countries.js"); // array of country list
-// console.log(countryArr)
+// Require Country List
+const countryArr = require("../data/countries.js"); // array of country list
 
 // READ: display list of recommendations
 router.get("/recommendations", (req, res, next) => {
@@ -28,7 +29,10 @@ router.get("/recommendations", (req, res, next) => {
 router.get("/recommendations/create", isLoggedIn, (req, res, next) => {
   Recom.find()
     .then((recommendationsArr) => {
-      res.render("recommendations/recom-create", { recommendationsArr });
+      res.render("recommendations/recom-create", {
+        recommendationsArr,
+        countryArr,
+      });
     })
     .catch((error) => {
       console.log("Error displaying form", error);
