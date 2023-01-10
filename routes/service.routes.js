@@ -33,11 +33,6 @@ router.get("/services/create", isLoggedIn, (req, res, next) => {
         servicesArr: servicesArr,
         countryArr: countryArr,
         languageArr: languageArr,
-      res.render("services/service-create", { 
-        servicesArr: servicesArr, 
-        countryArr: countryArr, 
-        languageArr: languageArr,
-        servicesTypeArr: servicesTypeArr
       });
     })
     .catch((error) => {
