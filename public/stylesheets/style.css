@@ -39,3 +39,40 @@ body {
 .container {
   margin-top: 50px;
 }
+
+/* section on index */
+section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+h1 {
+  margin: auto;
+}
+
+.block1 {
+  color: #F7F7FF;
+  background: #F46036;
+  height: 80%;
+}
+
+.block2 {
+  background: #19647E;
+  height: 50%;
+}
+
+.block3 {
+  background: #ffd166;
+}
+
+.block4 {
+  background: aqua;
+  height: 50%;
+}
+
+.block5 {
+  color: #F7F7FF;
+  background: #212738;
+  height: 30%;
+}
