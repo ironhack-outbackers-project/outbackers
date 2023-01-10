@@ -1,6 +1,132 @@
 <div class="container">
-    <h2>Edit: {{service.title}} </h2>
+  <h2>Edit: {{service.title}} </h2>
 
+<<<<<<< HEAD
+  <div class="form">
+    <form action="/services/{{service._id}}/edit" method="post">
+      <div class="container">
+        <div class="row p-1">
+          {{! title }}
+          <div class="col-8 was-validated">
+            <label>Title</label>
+            <input
+              class="form-control"
+              type="text"
+              name="title"
+              value="{{service.title}}"
+            />
+            <div class="invalid-feedback">Please provide a title</div>
+          </div>
+          {{! service type }}
+          <div class="col-4">
+            <label>Service Type</label>
+            <select
+              class="form-select"
+              name="serviceType"
+              value="{{service.serviceType}}"
+            >
+              <option>Job</option>
+              <option>Housing</option>
+            </select>
+          </div>
+        </div>
+        <div class="row p-1">
+          {{! description }}
+          <div class="col was-validated">
+            <label>Description</label>
+            <textarea
+              class="form-control"
+              name="description"
+              cols="30"
+              rows="4"
+            >{{service.description}}</textarea>
+            <div class="invalid-feedback">Please provide a description</div>
+          </div>
+        </div>
+        <div class="row p-1">
+          {{! country }}
+          <div class="col">
+            <label>Country</label>
+            <select
+              class="form-control"
+              name="country"
+              value="{{service.country}}"
+            >
+              <option
+                selected
+                value="{{currentCountry}}"
+              >{{currentCountry}}</option>
+              {{#each countryArr}}
+                <option value="{{this}}">{{this}}</option>
+              {{/each}}
+            </select>
+          </div>
+          {{! city }}
+          <div class="col">
+            <label>City</label>
+            <input
+              class="form-control"
+              type="text"
+              name="city"
+              value="{{service.city}}"
+            />
+          </div>
+        </div>
+        <div class="row p-1">
+          {{! language }}
+          <div class="col">
+            <label>Language</label>
+            <select
+              multiple
+              class="form-control"
+              name="language"
+              value="{{service.language}}"
+            >
+              {{#each spokenLanguages}}
+                {{#if isSpoken}}
+                  <option selected value="{{this.name}}">{{this.name}}</option>
+                {{else}}
+                  <option value="{{this.name}}">{{this.name}}</option>
+                {{/if}}
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="row p-1">
+          {{! date }}
+          <div class="col">
+            <label>Date from</label>
+            <input
+              class="form-control"
+              type="date"
+              name="dateFrom"
+              value="{{service.dateFrom}}"
+            />
+          </div>
+          <div class="col">
+            <label>Date to</label>
+            <input
+              class="form-control"
+              type="date"
+              name="dateTo"
+              value="{{service.dateTo}}"
+            />
+          </div>
+        </div>
+        <div class="row p-1">
+          {{! image }}
+          <div class="col">
+            <label>Image</label>
+            <input
+              class="form-control"
+              type="file"
+              name="image"
+              value="{{service.image}}"
+            />
+          </div>
+        </div>
+      </div>
+=======
     <div class="form">
         <form action="/services/{{service._id}}/edit" method="post">
             <div class="container">
@@ -78,15 +204,16 @@
                     </div>
                 </div>
             </div>
+>>>>>>> b6450ca7fcbe8a6987ba4ab046aeb5844e32c150
 
-            <br />
-            <a href="/services/{{services._id}}" class="btn btn-light">Cancel</a>
-            <button class="btn btn-primary" type="submit">Update</button>
-        </form>
+      <br />
+      <a href="/services/{{services._id}}" class="btn btn-light">Cancel</a>
+      <button class="btn btn-primary" type="submit">Update</button>
+    </form>
 
-        {{!-- error message for validation --}}
-        {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-        {{/if}}
-    </div>
+    {{! error message for validation }}
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </div>
 </div>

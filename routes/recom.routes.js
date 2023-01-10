@@ -6,9 +6,10 @@ const Recom = require("../models/Recom.model");
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isCreator = require("../middleware/isCreator");
 
-// const countryArr = require("../data/countries.js"); // array of country list
-// console.log(countryArr)
+// Require Country List
+const countryArr = require("../data/countries.js"); // array of country list
 
 // READ: display list of recommendations
 router.get("/recommendations", (req, res, next) => {
@@ -28,7 +29,10 @@ router.get("/recommendations", (req, res, next) => {
 router.get("/recommendations/create", isLoggedIn, (req, res, next) => {
   Recom.find()
     .then((recommendationsArr) => {
-      res.render("recommendations/recom-create", { recommendationsArr });
+      res.render("recommendations/recom-create", {
+        recommendationsArr,
+        countryArr,
+      });
     })
     .catch((error) => {
       console.log("Error displaying form", error);
@@ -95,13 +99,23 @@ router.get("/recommendations/:id", (req, res, next) => {
 });
 
 // UPDATE: display form to update a specific recommendation
-router.get("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
+router.get("/recommendations/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
 
   Recom.findById(id)
     .then((editRecommendation) => {
+      // dropdown list of country selected
+      const currentCountry = countryArr.find((countryName) => {
+        if (countryName === editRecommendation.country) {
+          return true;
+        }
+        return false;
+      });
+
       res.render("recommendations/recom-edit", {
-        recommendations: editRecommendation,
+        recommendation: editRecommendation,
+        countryArr: countryArr,
+        currentCountry: currentCountry,
       });
     })
     .catch((error) => {
@@ -111,18 +125,10 @@ router.get("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
 });
 
 // UPDATE: display form to actually update a specific recommendation
-router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
+router.post("/recommendations/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
-  const {
-    title,
-    description,
-    advice,
-    country,
-    city,
-    image,
-    creator,
-    // posts,
-  } = req.body;
+  const { title, description, advice, country, city, image, creator } =
+    req.body;
 
   // check if title, description and creator are provided
   if (title === "" || description === "" || creator === "") {
@@ -137,16 +143,12 @@ router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
     id,
     {
       title,
-      serviceType,
       description,
+      advice,
       country,
       city,
-      language,
-      dateFrom,
-      dateTo,
       image,
       creator,
-      posts,
     },
     { new: true }
   )
@@ -158,7 +160,7 @@ router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
 });
 
 // DELETE: route to delete a posted recommendation from the db
-router.post("/recommendations/:id/delete", (req, res, next) => {
+router.post("/recommendations/:id/delete", isCreator, (req, res, next) => {
   const { id } = req.params;
 
   Recom.findByIdAndDelete(id)
