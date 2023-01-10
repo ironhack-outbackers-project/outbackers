@@ -48,26 +48,19 @@ const services = [
     country: "Australia",
     city: "Sydney",
     language: "English",
-    dateFrom: 2023-01-10T00:00:00.000+00:00,
-    dateTo: 2023-03-31T00:00:00.000+00:00,
     image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
-    creator: isObjectIdOrHexString('63b7fcc02b4e16ab17033fe2'),
-    createdAt: 2023-01-09T21:50:37.930+00:00,
-    updatedAt: 2023-01-09T21:50:37.930+00:00
+    creator: "63b7fcc02b4e16ab17033fe2",
   },
   {
     title: "Looking for a Cool Place with Cool People",
     serviceType: "Housing",
-    description: "Hi! I'm Hayden, a 34 year old mature student finishing up a degree at UBC (He/Him). I'm generally quiet, easygoing, and easy to deal with. Great at cleaning up after myself, and more than happy to take part in however chores are divided (or happy to help engineer a fair system in the absence of one). In my free time (not that I have a lot of that these days) I cook, read, cycle, climb, kayak, and snowboard. I come with my own fridge and a bunch of retro gaming consoles. Ideally I'm looking for a group of relaxed individuals to share a home with for the foreseeable future. Preferably mid twenties to late thirties, but I'm open minded. LGTBQ+ friendly. My budget is for no more than 900$ Please do not contact me offering a room for more than that. That said, I am a fiscally responsible, mature adult who knows how to budget, and always pays his bills/rent on time. References available upon request. If any of this resonates shoot me a message :)Looking for Feb 1st, although January would be fine too.",
+    description:
+      "Hi! I'm Hayden, a 34 year old mature student finishing up a degree at UBC (He/Him). I'm generally quiet, easygoing, and easy to deal with. Great at cleaning up after myself, and more than happy to take part in however chores are divided (or happy to help engineer a fair system in the absence of one). In my free time (not that I have a lot of that these days) I cook, read, cycle, climb, kayak, and snowboard. I come with my own fridge and a bunch of retro gaming consoles. Ideally I'm looking for a group of relaxed individuals to share a home with for the foreseeable future. Preferably mid twenties to late thirties, but I'm open minded. LGTBQ+ friendly. My budget is for no more than 900$ Please do not contact me offering a room for more than that. That said, I am a fiscally responsible, mature adult who knows how to budget, and always pays his bills/rent on time. References available upon request. If any of this resonates shoot me a message :)Looking for Feb 1st, although January would be fine too.",
     country: "Canada",
     city: "Vancouver",
     language: "English",
-    dateFrom: 2023-01-10T00:00:00.000+00:00,
-    dateTo: 2023-03-31T00:00:00.000+00:00,
     image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
-    creator: isObjectIdOrHexString('63b7fcc02b4e16ab17033fe2'),
-    createdAt: 2023-01-09T21:50:37.930+00:00,
-    updatedAt: 2023-01-09T21:50:37.930+00:00
+    creator: "63b7fcc02b4e16ab17033fe2",
   },
   {
     title: "All Rounder (Front and Kitchen)",
@@ -77,38 +70,72 @@ const services = [
     country: "USA",
     city: "Denver",
     language: "English",
-    dateFrom: 2023-01-10T00:00:00.000+00:00,
-    dateTo: 2023-03-31T00:00:00.000+00:00,
     image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
-    creator: isObjectIdOrHexString('63b7fcc02b4e16ab17033fe2'),
-    createdAt: 2023-02-09T21:50:37.930+00:00,
-    updatedAt: 2023-02-09T21:50:37.930+00:00
+    creator: "63b7fcc02b4e16ab17033fe2",
   },
   {
     title: "Looking for a cool new roommate",
     serviceType: "Housing",
-    description: "Hi! I'm Zeus, a 131 year old God from Greece (He/Him). I'm generally quiet, easygoing, and easy to deal with. Great at cleaning up after myself, and more than happy to take part in however chores are divided (or happy to help engineer a fair system in the absence of one). In my free time (not that I have a lot of that these days) I cook, read, cycle, climb, kayak, and snowboard. I come with my own fridge and a bunch of retro gaming consoles. Ideally I'm looking for a group of relaxed individuals to share a home with for the foreseeable future. Preferably mid twenties to late thirties, but I'm open minded. LGTBQ+ friendly. My budget is for no more than 900$ Please do not contact me offering a room for more than that. That said, I am a fiscally responsible, mature adult who knows how to budget, and always pays his bills/rent on time. References available upon request. If any of this resonates shoot me a message :)Looking for Feb 1st, although January would be fine too.",
+    description:
+      "Hi! I'm Zeus, a 131 year old God from Greece (He/Him). I'm generally quiet, easygoing, and easy to deal with. Great at cleaning up after myself, and more than happy to take part in however chores are divided (or happy to help engineer a fair system in the absence of one). In my free time (not that I have a lot of that these days) I cook, read, cycle, climb, kayak, and snowboard. I come with my own fridge and a bunch of retro gaming consoles. Ideally I'm looking for a group of relaxed individuals to share a home with for the foreseeable future. Preferably mid twenties to late thirties, but I'm open minded. LGTBQ+ friendly. My budget is for no more than 900$ Please do not contact me offering a room for more than that. That said, I am a fiscally responsible, mature adult who knows how to budget, and always pays his bills/rent on time. References available upon request. If any of this resonates shoot me a message :)Looking for Feb 1st, although January would be fine too.",
     country: "Porto",
     city: "Portugal",
     language: "Portuguese",
-    dateFrom: 2023-01-10T00:00:00.000+00:00,
-    dateTo: 2023-03-31T00:00:00.000+00:00,
     image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
-    creator: isObjectIdOrHexString('63b7fcc02b4e16ab17033fe2'),
-    createdAt: 2023-01-09T21:50:37.930+00:00,
-    updatedAt: 2023-01-09T21:50:37.930+00:00
-  }
+    creator: "63b7fcc02b4e16ab17033fe2",
+  },
 ];
 
-const booksPromise = Book.create(books);
-const authorsPromise = Author.create(authors);
+const recommendations = [
+  {
+    title: "Getting a pizza in Napoli",
+    description:
+      "Go check out 'Gino e Toto Sorbillo'. In my opinion, it is the best pizza in town!",
+    advice:
+      "Don't look anybody in the eyes because it could offend them. They are very proud people.",
+    country: "Italy",
+    city: "Napoli",
+    image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
+    creator: "63b7fcc02b4e16ab17033fe2",
+  },
+  {
+    title: "Homemade Arepas",
+    description:
+      "Go check out 'Guilli arepas'. In my opinion, they have the best arepitas in town!",
+    advice:
+      "Don't look anybody in the eyes because it could offend them. They are very proud people.",
+    country: "Colombia",
+    city: "Medellin",
+    image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
+    creator: "63b7fcc02b4e16ab17033fe2",
+  },
+  {
+    title: "Getting caipirinhas in Ubatuba",
+    description:
+      "Go check out 'Caipi House Ubatuba'. In my opinion, it is the best caipirinha in town!",
+    advice:
+      "You can take the caipirinha and walk to be beach: absolutely lovely!",
+    country: "Brazil",
+    city: "Ubatuba",
+    image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
+    creator: "63b7fcc02b4e16ab17033fe2",
+  },
+];
 
-Promise.all([booksPromise, authorsPromise])
+const userPromise = User.create(users);
+const servicePromise = Service.create(services);
+const recomPromise = Recom.create(recommendations);
+
+Promise.all([userPromise, servicePromise, recomPromise])
   .then((result) => {
-    const booksCreated = result[0];
-    const authorsCreated = result[1];
-    console.log(`Number of books created... ${booksCreated.length} `);
-    console.log(`Number of authors created... ${authorsCreated.length} `);
+    const usersCreated = result[0];
+    const servicesCreated = result[1];
+    const recommendationsCreated = result[2];
+    console.log(`Number of users created... ${usersCreated.length} `);
+    console.log(`Number of services created... ${servicesCreated.length} `);
+    console.log(
+      `Number of recommendations created... ${recommendationsCreated.length} `
+    );
 
     // Once created, close the DB connection
     mongoose.connection.close();
