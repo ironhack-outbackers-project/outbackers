@@ -6,6 +6,7 @@ const User = require("../models/User.model");
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isCreator = require("../middleware/isCreator");
 
 // Require Country and Language List
 const countryArr = require("../data/countries.js");
@@ -80,7 +81,7 @@ router.get("/services/:id", (req, res, next) => {
 });
 
 // UPDATE: display form to update a specific service
-router.get("/services/:id/edit", isLoggedIn, (req, res, next) => {
+router.get("/services/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
 
   Service.findById(id)
@@ -94,21 +95,19 @@ router.get("/services/:id/edit", isLoggedIn, (req, res, next) => {
       })
 
       // dropdown list of languages selected
-      // const spokenLanguages = languageArr.map((languagesSelected) => {
-      //   if(languagesSelected === editService.language){
-      //     return true;
-      //   }
-      //   return false;
-      // })
-
-      // console.log(spokenLanguages)
+      const spokenLanguages = languageArr.map((name) => {
+        const lang = {
+          name, 
+          isSpoken: editService.language.includes(name)
+        }
+        return lang;
+      })
 
       res.render("services/service-edit", { 
         service: editService, 
         countryArr: countryArr, 
         currentCountry: currentCountry,
-        languageArr: languageArr,
-        // spokenLanguages: spokenLanguages
+        spokenLanguages: spokenLanguages
 
       });
 
@@ -120,7 +119,7 @@ router.get("/services/:id/edit", isLoggedIn, (req, res, next) => {
 });
 
 // UPDATE: display form to actually update a specific service
-router.post("/services/:id/edit", isLoggedIn, (req, res, next) => {
+router.post("/services/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
   const {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator} = req.body;
 
@@ -142,7 +141,7 @@ router.post("/services/:id/edit", isLoggedIn, (req, res, next) => {
 });
 
 // DELETE: route to delete a posted service from the db
-router.post("/services/:id/delete", isLoggedIn, (req, res, next) => {
+router.post("/services/:id/delete", isCreator, (req, res, next) => {
   const { id } = req.params;
 
   Service.findByIdAndDelete(id)

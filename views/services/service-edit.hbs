@@ -50,10 +50,13 @@
                     {{!-- language --}}
                     <div class="col">
                         <label>Language</label>
-                        <select class="form-control" name="language" value="{{service.language}}">
-                            <option selected value="{{spokenLanguages}}">{{spokenLanguages}}</option>
-                            {{#each languageArr}}
-                            <option value="{{this}}">{{this}}</option>
+                        <select multiple class="form-control" name="language" value="{{service.language}}">
+                            {{#each spokenLanguages}}
+                                {{#if isSpoken}}
+                                    <option selected value="{{this.name}}">{{this.name}}</option>
+                                {{else}}
+                                    <option value="{{this.name}}">{{this.name}}</option>
+                                {{/if}}
                             {{/each}}
                         </select>
                     </div>
@@ -76,14 +79,6 @@
                         <input class="form-control" type="file" name="image" value="{{service.image}}">
                     </div>
                 </div>
-                <div class="row p-1">
-                    {{!-- creator --}}
-                    <div class="col was-validated">
-                        <label>Creator</label>
-                        <input class="form-control" type="text" name="creator" value="{{service.creator}}" />
-                    </div>
-                </div>
-
             </div>
 
             <br />
