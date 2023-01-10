@@ -5,13 +5,7 @@
 
 body {
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-/* index page sectioning design */
-.inner {
-    --padding-horizontal: 5rem;
-    --padding-vertical: 10rem;
-    padding: var(--padding-vertical) var(--padding-horizontal);
+  background-color: #f7f7ff;
 }
 
 /* create-edit forms */
@@ -53,21 +47,4 @@ section {
 
 h1 {
   margin: auto;
-}
-
-.block1 {
-  color: #F7F7FF;
-  background: #F46036;
-  height: 80%;
-}
-
-.block4 {
-  background: aqua;
-  height: 50%;
-}
-
-.block5 {
-  color: #F7F7FF;
-  background: #212738;
-  height: 30%;
 }

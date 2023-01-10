@@ -11,6 +11,7 @@ const isCreator = require("../middleware/isCreator");
 // Require Country and Language List
 const countryArr = require("../data/countries.js");
 const languageArr = require("../data/languages.js");
+const servicesTypeArr = ["Job", "Housing"];
 
 // READ: display list of services
 router.get("/services", (req, res, next) => {
@@ -32,6 +33,11 @@ router.get("/services/create", isLoggedIn, (req, res, next) => {
         servicesArr: servicesArr,
         countryArr: countryArr,
         languageArr: languageArr,
+      res.render("services/service-create", { 
+        servicesArr: servicesArr, 
+        countryArr: countryArr, 
+        languageArr: languageArr,
+        servicesTypeArr: servicesTypeArr
       });
     })
     .catch((error) => {
