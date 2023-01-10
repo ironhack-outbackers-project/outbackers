@@ -39,14 +39,18 @@
         </div>
         <br />
 
-        <button class="btn btn-primary" type="submit">Sign Up</button>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          action="/"
+          method="get"
+        >Sign Up</button>
 
       </div>
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
     </form>
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
 
   </div>
 </div>
