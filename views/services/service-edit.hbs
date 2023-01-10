@@ -15,8 +15,10 @@
                     <div class="col-4">
                         <label>Service Type</label>
                         <select class="form-select" name="serviceType" value="{{service.serviceType}}">
-                            <option>Job</option>
-                            <option>Housing</option>
+                            <option selected value="{{serviceTypeChoosen}}">{{serviceTypeChoosen}}</option>
+                            {{#each servicesTypeArr}}
+                                <option value="{{this}}">{{this}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
@@ -65,11 +67,7 @@
                     {{!-- date --}}
                     <div class="col">
                         <label>Date from</label>
-                        <input class="form-control" type="date" name="dateFrom" value="{{service.dateFrom}}" />
-                    </div>
-                    <div class="col">
-                        <label>Date to</label>
-                        <input class="form-control" type="date" name="dateTo" value="{{service.dateTo}}" />
+                        <input class="form-control" type="date" name="date" value="{{service.date}}" />
                     </div>
                 </div>
                 <div class="row p-1">

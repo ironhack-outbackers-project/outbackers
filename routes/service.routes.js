@@ -11,6 +11,7 @@ const isCreator = require("../middleware/isCreator");
 // Require Country and Language List
 const countryArr = require("../data/countries.js");
 const languageArr = require("../data/languages.js");
+const servicesTypeArr = ['Job', 'Housing'];
 
 // READ: display list of services
 router.get("/services", (req, res, next) => {
@@ -31,7 +32,8 @@ router.get("/services/create", isLoggedIn, (req, res, next) => {
       res.render("services/service-create", { 
         servicesArr: servicesArr, 
         countryArr: countryArr, 
-        languageArr: languageArr 
+        languageArr: languageArr,
+        servicesTypeArr: servicesTypeArr
       });
     })
     .catch((error) => {
@@ -42,7 +44,7 @@ router.get("/services/create", isLoggedIn, (req, res, next) => {
 
 //CREATE: process form
 router.post("/services/create", isLoggedIn, (req, res, next) => {
-    const {title, description, country, city, language, dateFrom, dateTo, serviceType, image, posts} = req.body;
+    const {title, serviceType, description, country, city, language, date, image} = req.body;
 
     const creator = req.session.currentUser._id;
 
@@ -55,7 +57,7 @@ router.post("/services/create", isLoggedIn, (req, res, next) => {
     return;
   }
 
-    Service.create({title, description, country, city, language, dateFrom, dateTo, serviceType, image, creator, posts})
+    Service.create({title, description, country, city, language, date, serviceType, image})
     // .populate('creator')
     .then(() => res.redirect("/services"))
     .catch((error) => {
@@ -86,6 +88,7 @@ router.get("/services/:id/edit", isCreator, (req, res, next) => {
 
   Service.findById(id)
     .then((editService) => {
+
       // dropdown list of country selected
       const currentCountry = countryArr.find((countryName) => {
         if(countryName === editService.country){
@@ -102,12 +105,22 @@ router.get("/services/:id/edit", isCreator, (req, res, next) => {
         }
         return lang;
       })
+     
+      // dropdown list of serviceType selected
+      const serviceTypeChoosen = servicesTypeArr.find((serviceSelected) => {
+        if(serviceSelected === editService.serviceType){
+          return true;
+        }
+        return false;
+      })
 
       res.render("services/service-edit", { 
         service: editService, 
         countryArr: countryArr, 
         currentCountry: currentCountry,
-        spokenLanguages: spokenLanguages
+        spokenLanguages: spokenLanguages,
+        servicesTypeArr: servicesTypeArr,
+        serviceTypeChoosen: serviceTypeChoosen
 
       });
 
@@ -121,7 +134,7 @@ router.get("/services/:id/edit", isCreator, (req, res, next) => {
 // UPDATE: display form to actually update a specific service
 router.post("/services/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
-  const {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator} = req.body;
+  const {title, serviceType, description, country, city, language, date, image, creator} = req.body;
 
   // check if title, description and creator are provided
   if (title === "" || description === "") {
@@ -132,7 +145,7 @@ router.post("/services/:id/edit", isCreator, (req, res, next) => {
     return;
   }
 
-  Service.findByIdAndUpdate(id, {title, serviceType, description, country, city, language, dateFrom, dateTo, image, creator}, { new: true })
+  Service.findByIdAndUpdate(id, {title, serviceType, description, country, city, language, date, image, creator}, { new: true })
     .then(() => res.redirect(`/services/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);

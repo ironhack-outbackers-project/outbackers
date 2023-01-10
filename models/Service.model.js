@@ -6,10 +6,7 @@ const serviceSchema = new Schema(
             type: String,
             required: true,
         },
-        serviceType: {
-            type: String,
-            enum: ['Job', 'Housing']
-        },
+        serviceType: String,
         description: {
             type: String,
             required: true,
@@ -17,11 +14,10 @@ const serviceSchema = new Schema(
         country: String,
         city: String,
         language: [String],
-        dateFrom: Date,
-        dateTo: Date,
+        date: String,
         image: {
             type: String,
-            default: 'https://cdn-icons-png.flaticon.com/512/834/834096.png',
+            default: 'https://as2.ftcdn.net/v2/jpg/04/99/93/31/1000_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg',
         },
         creator: {
             type: Schema.Types.ObjectId,

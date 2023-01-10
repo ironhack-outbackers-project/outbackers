@@ -15,9 +15,10 @@
                     <div class="col-4 was-validated">
                         <label>Service Type </label>
                         <select class="form-select" required name="serviceType">
-                            <option></option>
-                            <option>Job</option>
-                            <option>Housing</option>
+                            <option value=""></option>
+                            {{#each servicesTypeArr}}
+                            <option value="{{this}}">{{this}}</option>
+                            {{/each}}
                         </select>
                         <div class="invalid-feedback">Please choose one</div>
                     </div>
@@ -61,12 +62,8 @@
                 <div class="row p-1">
                     {{!-- date --}}
                     <div class="col">
-                        <label>Date from</label>
-                        <input class="form-control" type="date" name="dateFrom" />
-                    </div>
-                    <div class="col">
-                        <label>Date to</label>
-                        <input class="form-control" type="date" name="dateTo" />
+                        <label>Date</label>
+                        <input class="form-control" name="date" type="text" value="01/01/2023 - 01/15/2023" />
                     </div>
                 </div>
                 <div class="row p-1">
