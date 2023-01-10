@@ -138,7 +138,7 @@ router.post("/services/:id/edit", isCreator, (req, res, next) => {
 
   // check if title, description and creator are provided
   if (title === "" || description === "") {
-    res.status(400).render("services/service-create", {
+    res.status(400).render("services/service-edit", {
       errorMessage:
         "All fields are mandatory. Please provide title and description ",
     });
