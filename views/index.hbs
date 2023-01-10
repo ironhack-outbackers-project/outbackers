@@ -1,16 +1,111 @@
-
+<body>
   <section class="block1">
-      <div class="inner">
-    <h1>Outbackers</h1>
 
-    {{#if userDetails}}
-      <p>Welcome {{userDetails.username}}! </p>
+    <div
+      id="carouselExampleFade"
+      class="carousel slide carousel-fade"
+      data-bs-ride="carousel"
+    >
 
-    {{else}}
-      <p>Welcome to Outbackers!</p>
-      <p>Sign in to your account or create a new one to be part of the community!</p>
-    {{/if}}
-  </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Outbackers</h1>
+
+            {{#if userDetails}}
+              <p>Welcome {{userDetails.username}}! </p>
+
+            {{else}}
+              <p>Welcome to Outbackers!</p>
+              <p>Sign in to your account or create a new one to be part of the
+                community!</p>
+            {{/if}}
+          </div>
+          <img
+            src="https://images.unsplash.com/flagged/photo-1557772350-e6061e459264?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            class="d-block w-100"
+            alt="a couple of vans at the beach"
+          />
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Outbackers</h1>
+
+            {{#if userDetails}}
+              <p>Welcome {{userDetails.username}}! </p>
+
+            {{else}}
+              <p>Welcome to Outbackers!</p>
+              <p>Sign in to your account or create a new one to be part of the
+                community!</p>
+            {{/if}}
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1586600822178-26dec0f653a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1802&q=80"
+            class="d-block w-100"
+            alt="mountains at dawn"
+          />
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Outbackers</h1>
+
+            {{#if userDetails}}
+              <p>Welcome {{userDetails.username}}! </p>
+
+            {{else}}
+              <p>Welcome to Outbackers!</p>
+              <p>Sign in to your account or create a new one to be part of the
+                community!</p>
+            {{/if}}
+          </div>
+          <img
+            src="https://images.unsplash.com/39/vsSIIQbXTHCO1jBsKm4Q_IMG_1779_edt.jpg?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2942&q=80"
+            class="d-block w-100"
+            alt="a house at the beach"
+          />
+        </div>
+        <div class="carousel-item">
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Outbackers</h1>
+
+            {{#if userDetails}}
+              <p>Welcome {{userDetails.username}}! </p>
+
+            {{else}}
+              <p>Welcome to Outbackers!</p>
+              <p>Sign in to your account or create a new one to be part of the
+                community!</p>
+            {{/if}}
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2874&q=80"
+            class="d-block w-100"
+            alt="a lake"
+          />
+        </div>
+
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
   </section>
 
 {{!-- look for recommendations --}}
@@ -80,7 +175,7 @@
   </section>
   <section class="block5">
     <h1>
-     Footer
+      Footer
     </h1>
   </section>
 </body>
