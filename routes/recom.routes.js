@@ -3,7 +3,7 @@ const router = require("express").Router();
 const Recom = require("../models/Recom.model");
 //const User = require("../models/User.model");
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
+// Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
@@ -110,7 +110,7 @@ router.get("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
     });
 });
 
-// UPDATE: display form to actually update a specific service
+// UPDATE: display form to actually update a specific recommendation
 router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const {
@@ -157,8 +157,8 @@ router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
     });
 });
 
-// DELETE: route to delete a posted service from the db
-router.post("/services/:id/delete", (req, res, next) => {
+// DELETE: route to delete a posted recommendation from the db
+router.post("/recommendations/:id/delete", (req, res, next) => {
   const { id } = req.params;
 
   Recom.findByIdAndDelete(id)
