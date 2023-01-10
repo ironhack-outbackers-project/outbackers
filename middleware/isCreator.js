@@ -6,9 +6,11 @@ module.exports = (req, res, next) => {
   Service.findById(id)
     .then((services) => {
       if(req.session.currentUser._id != services.creator.toString()) {
-        return res.redirect("/services");
+        return res.redirect(`/services/${id}`);
+
       }
       next();
+      
     })
     .catch((error) => {
       console.log(error);

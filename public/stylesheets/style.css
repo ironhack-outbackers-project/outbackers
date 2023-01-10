@@ -34,6 +34,7 @@ body {
   margin-top: 30px;
   margin-bottom: 30px;
 }
+
 /*container on edit views*/
 .container-edit{
   margin-top: 100px;
@@ -47,4 +48,9 @@ section {
 
 h1 {
   margin: auto;
+}
+
+/* icons size */
+svg {
+  width: 40px;
 }

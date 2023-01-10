@@ -7,48 +7,28 @@
         <div class="row p-1">
           <div class="col">
             <label>Username</label>
-            <input
-              class="form-control"
-              type="text"
-              name="username"
-              placeholder="Your username"
-            />
+            <input class="form-control" type="text" name="username" placeholder="Your username" />
           </div>
         </div>
         <div class="row p-1">
           <div class="col">
             <label>Email</label>
-            <input
-              class="form-control"
-              type="email"
-              name="email"
-              placeholder="Your email"
-            />
+            <input class="form-control" type="email" name="email" placeholder="Your email" />
           </div>
         </div>
         <div class="row p-1">
           <div class="col">
             <label>Password</label>
-            <input
-              class="form-control"
-              type="password"
-              name="password"
-              placeholder="Your password"
-            />
+            <input class="form-control" type="password" name="password" placeholder="Your password" />
           </div>
         </div>
         <br />
 
-        <button
-          class="btn btn-primary"
-          type="submit"
-          action="/"
-          method="get"
-        >Sign Up</button>
+        <button class="btn btn-primary" type="submit" action="/" method="get">Sign Up</button>
 
       </div>
       {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
+      <p class="error">{{errorMessage}}</p>
       {{/if}}
     </form>
 

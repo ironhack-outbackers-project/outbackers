@@ -1,98 +1,103 @@
+<!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Outbackers</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Outbackers</title>
 
-    {{!-- bootstrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+  {{!-- bootstrap --}}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
 
-    {{!-- date range picker --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  {{!-- date range picker --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-  <body>
+<body>
 
-    <header>
-      {{!-- nav bar --}}
-      <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+  {{!-- nav bar --}}
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
 
-          <a class="navbar-brand" href="/">
-            <img src="https://cdn-icons-png.flaticon.com/512/6904/6904112.png" alt="Logo" width="30" height="25" class="d-inline-block align-text-top" />
-            Outbackers
-          </a>
+        <a class="navbar-brand" href="/"><img src="https://cdn-icons-png.flaticon.com/512/71/71423.png" alt="Logo" width="30" height="25" class="d-inline-block align-text-top" />Outbackers</a>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon" ></span></button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" ><span class="navbar-toggler-icon"></span></button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-lg-0 ">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">Home</a>
+            </li>
 
-              <li class="nav-item">
+            <li class="nav-item">
               <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Services </a>
-                
+                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  All</a>
+              
                 {{!-- dropdown menu --}}
                 <ul class="dropdown-menu">
                   {{#if userDetails}}
-                    <li><a class="dropdown-item" href="/services"> List of services</a></li>
-                    <li><a class="dropdown-item" href="/services/create">Create a service</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="/recommendations"> List of recommendations</a></li>
-                    <li><a class="dropdown-item" href="/recommendations/create">Post a recommendation</a></li>
+                  <li><a class="dropdown-item" href="/services"> List of Services</a></li>
+                  <li><a class="dropdown-item" href="/services/create">Create a new service</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+
+                  <li><a class="dropdown-item" href="/recommendations"> List of Recommendations</a></li>
+                  <li><a class="dropdown-item" href="/recommendations/create">Create a new recommendation</a></li>
                   {{else}}
-                    <li><a class="dropdown-item" href="/services">List of Services</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="/recommendations"> List of recommendations</a></li>
+                  <li><a class="dropdown-item" href="/services">List of Services</a></li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item" href="/recommendations"> List of Recommendations</a></li>
                   {{/if}}
                 </ul>
-
+              
               </li>
-            </ul>
+          </ul>
 
-            <span class="navbar-text">
-              <li class="nav-link active">
-                {{#if userDetails}}
-                  Logged in as: {{userDetails.username}}
-                  <a class="btn btn-outline-secondary" aria-current="page" href="/auth/logout">Logout</a>
-                {{else}}
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li>
-                      <a class="btn btn-outline-secondary" aria-current="page" href="/auth/signup">Signup</a>
-                    </li>
-                    <li>
-                      <a class="btn btn-outline-secondary" aria-current="page" href="/auth/login">Login</a>
-                    </li>
-                  </ul>
-                {{/if}}
-              </li>
-            </span>
+          <span class="navbar-text">
+            <li class="nav-link active">
+              {{#if userDetails}}
+              Welcome back {{userDetails.email}} |
+              <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/logout">Logout</a>
+              {{else}}
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li>
+                  <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/signup">Signup</a> |
+                </li>
+                <li>
+                  <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/login">Login</a>
+                </li>
+              </ul>
+              {{/if}}
+            </li>
+          </span>
 
-          </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-    </header>
+  </header>
 
-    {{{body}}}
+  {{{body}}}
 
 
-    {{!-- bootstrap --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  {{!-- bootstrap --}}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
 
-    {{!-- date range picker --}}
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  {{!-- date range picker --}}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    <script src="/js/script.js"></script>
-  </body>
+  <script src="/js/script.js"></script>
+</body>
 
 </html>
