@@ -1,0 +1,118 @@
+<div class="container">
+  <h2>Edit: {{Recom.title}} </h2>
+
+  <div class="form">
+    <form action="/recommendations/{{Recom._id}}/edit" method="post">
+      <div class="container">
+        <div class="row p-1">
+          {{! title }}
+          <div class="col-8 was-validated">
+            <label>Title</label>
+            <input
+              class="form-control"
+              type="text"
+              name="title"
+              value="{{Recom.title}}"
+            />
+            <div class="invalid-feedback">Please provide a title</div>
+          </div>
+          {{! description }}
+          <div class="col was-validated">
+            <label>Description</label>
+            <textarea
+              class="form-control"
+              name="description"
+              cols="30"
+              rows="4"
+            >{{Recom.description}}</textarea>
+            <div class="invalid-feedback">Please provide a description</div>
+          </div>
+        </div>
+        {{! advice }}
+        <div class="col was-validated">
+          <label>Your advice</label>
+          <textarea
+            class="form-control"
+            name="description"
+            cols="30"
+            rows="4"
+          >{{Recom.description}}</textarea>
+          <div class="invalid-feedback">Please provide a description</div>
+        </div>
+      </div>
+      <div class="row p-1">
+        {{! country }}
+        <div class="col">
+          <label>Country</label>
+          <select class="form-control" name="country" value="{{Recom.country}}">
+            <option
+              selected
+              value="{{currentCountry}}"
+            >{{currentCountry}}</option>
+            {{#each countryArr}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>
+        </div>
+        {{! city }}
+        <div class="col">
+          <label>City</label>
+          <input
+            class="form-control"
+            type="text"
+            name="city"
+            value="{{service.city}}"
+          />
+        </div>
+      </div>
+      <div class="row p-1">
+        <div class="row p-1">
+          {{! date }}
+          <div class="col">
+            <label>Date</label>
+            <input
+              class="form-control"
+              type="date"
+              name="dateFrom"
+              value="{{service.dateFrom}}"
+            />
+          </div>
+        </div>
+        <div class="row p-1">
+          {{! image }}
+          <div class="col">
+            <label>Image</label>
+            <input
+              class="form-control"
+              type="file"
+              name="image"
+              value="{{service.image}}"
+            />
+          </div>
+        </div>
+        <div class="row p-1">
+          {{! creator }}
+          <div class="col was-validated">
+            <label>Creator</label>
+            <input
+              class="form-control"
+              type="text"
+              name="creator"
+              value="{{service.creator}}"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      <br />
+      <a href="/recommendations/{{Recom._id}}" class="btn btn-light">Cancel</a>
+      <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+
+    {{! error message for validation }}
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+  </div>
+</div>
