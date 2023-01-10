@@ -29,16 +29,12 @@ router.get("/services", (req, res, next) => {
 router.get("/services/create", isLoggedIn, (req, res, next) => {
   Service.find()
     .then((servicesArr) => {
-      res.render("services/service-create", {
-        servicesArr: servicesArr,
-        countryArr: countryArr,
-        languageArr: languageArr,
       res.render("services/service-create", { 
         servicesArr: servicesArr, 
         countryArr: countryArr, 
         languageArr: languageArr,
         servicesTypeArr: servicesTypeArr
-      });
+      })
     })
     .catch((error) => {
       console.log("Error displaying form", error);
