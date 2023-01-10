@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row p-1">
           {{! title }}
-          <div class="col-8 was-validated">
+          <div class="col-6 was-validated">
             <label>Title</label>
             <input
               class="form-control"
@@ -16,6 +16,19 @@
             />
             <div class="invalid-feedback">Please provide a title</div>
           </div>
+          {{! advice }}
+          <div class="col-6 was-validated">
+            <label>Your advice</label>
+            <textarea
+              class="form-control"
+              name="description"
+              cols="30"
+              rows="4"
+            >{{Recom.description}}</textarea>
+            <div class="invalid-feedback">Please provide a description</div>
+          </div>
+        </div>
+        <div class="row p-1">
           {{! description }}
           <div class="col was-validated">
             <label>Description</label>
@@ -28,21 +41,9 @@
             <div class="invalid-feedback">Please provide a description</div>
           </div>
         </div>
-        {{! advice }}
-        <div class="col was-validated">
-          <label>Your advice</label>
-          <textarea
-            class="form-control"
-            name="description"
-            cols="30"
-            rows="4"
-          >{{Recom.description}}</textarea>
-          <div class="invalid-feedback">Please provide a description</div>
-        </div>
-      </div>
-      <div class="row p-1">
+
         {{! country }}
-        <div class="col">
+        <div class="col-6">
           <label>Country</label>
           <select class="form-control" name="country" value="{{Recom.country}}">
             <option
@@ -55,13 +56,13 @@
           </select>
         </div>
         {{! city }}
-        <div class="col">
+        <div class="col-6">
           <label>City</label>
           <input
             class="form-control"
             type="text"
             name="city"
-            value="{{service.city}}"
+            value="{{Recom.city}}"
           />
         </div>
       </div>
@@ -74,7 +75,7 @@
               class="form-control"
               type="date"
               name="dateFrom"
-              value="{{service.dateFrom}}"
+              value="{{Recom.dateFrom}}"
             />
           </div>
         </div>
@@ -86,7 +87,7 @@
               class="form-control"
               type="file"
               name="image"
-              value="{{service.image}}"
+              value="{{Recom.image}}"
             />
           </div>
         </div>
@@ -98,7 +99,7 @@
               class="form-control"
               type="text"
               name="creator"
-              value="{{service.creator}}"
+              value="{{Recom.creator}}"
             />
           </div>
         </div>
