@@ -5,14 +5,22 @@
 
 body {
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #f7f7ff;
+  background-color: #0d2237;
+}
+
+/* section on index */
+section {
+  width: 100%;
+  display: flex;
+}
+
+h1 {
+  margin: auto;
 }
 
 /* create-edit forms */
 .form {
   margin-top: 30px;
-  display: flex;
-  justify-content: center;
 }
 
 .form .container {
@@ -40,20 +48,11 @@ body {
   margin-top: 100px;
 }
 
-/*carousel images adjustment*/
-.imageCarousel{
+.carousel-inner img {
   width: 100%;
+  height: 40%;
 }
 
-/* section on index */
-section {
-  width: 100%;
-  display: flex;
-}
-
-h1 {
-  margin: auto;
-}
 
 /* icons size */
 svg {

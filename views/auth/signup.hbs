@@ -1,36 +1,46 @@
-<div class="container text-center">
-  <h2>Sign Up</h2>
-
-  <div class="form">
-    <form action="/auth/signup" method="POST">
-      <div class="containe">
-        <div class="row p-1">
-          <div class="col">
-            <label>Username</label>
-            <input class="form-control" type="text" name="username" placeholder="Your username" />
-          </div>
-        </div>
-        <div class="row p-1">
-          <div class="col">
-            <label>Email</label>
-            <input class="form-control" type="email" name="email" placeholder="Your email" />
-          </div>
-        </div>
-        <div class="row p-1">
-          <div class="col">
-            <label>Password</label>
-            <input class="form-control" type="password" name="password" placeholder="Your password" />
-          </div>
-        </div>
-        <br />
-
-        <button class="btn btn-primary" type="submit" action="/" method="get">Sign Up</button>
-
+<section class="justify-content-center mt-5">
+  <div class="card rounded-5 mb-3 overflow-hidden col-8">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-7">
+        <img class="card-img-top"
+          src="https://images.pexels.com/photos/1252500/pexels-photo-1252500.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="">
       </div>
-      {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-      {{/if}}
-    </form>
+      <div class="col-5">
+        <div class="card-body">
+          <form action="/auth/signup" method="POST">
+            <div class="container">
+              <h3>Sign up</h3>
+            <p class="mb-2">to start exploring</p>
+              <div class="row p-1">
+                <div class="col-7">
+                  <label>Username</label>
+                  <input class="form-control" type="text" name="username" placeholder="Your username" />
+                </div>
+              </div>
+              <div class="row p-1">
+                <div class="col-7">
+                  <label>Email</label>
+                  <input class="form-control" type="email" name="email" placeholder="Your email" />
+                </div>
+              </div>
+              <div class="row p-1 mb-2">
+                <div class="col-7">
+                  <label>Password</label>
+                  <input class="form-control" type="password" name="password" placeholder="Your password" />
+                </div>
+              </div>
 
+              <button class="btn btn-dark" type="submit">Sign up</button>
+
+            </div>
+            {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+            {{/if}}
+
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
