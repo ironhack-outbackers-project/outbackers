@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, default: mongoose } = require("mongoose");
 
 const recommendationSchema = new Schema(
   {
@@ -19,7 +19,17 @@ const recommendationSchema = new Schema(
       type: String,
       default: "../public/images/default-img.png",
     },
-    creator: String,
+    creator: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    comments: [{
+      message: String,
+      creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      },
+      }]
   },
   {
     timestamps: true,

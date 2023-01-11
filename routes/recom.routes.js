@@ -6,6 +6,7 @@ const Recom = require("../models/Recom.model");
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isCreator = require("../middleware/isCreator");
 
 // Require Country List
 const countryArr = require("../data/countries.js"); // array of country list
@@ -98,7 +99,7 @@ router.get("/recommendations/:id", (req, res, next) => {
 });
 
 // UPDATE: display form to update a specific recommendation
-router.get("/recommendations/:id/edit", (req, res, next) => {
+router.get("/recommendations/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
 
   Recom.findById(id)
@@ -124,7 +125,7 @@ router.get("/recommendations/:id/edit", (req, res, next) => {
 });
 
 // UPDATE: display form to actually update a specific recommendation
-router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
+router.post("/recommendations/:id/edit", isCreator,  (req, res, next) => {
   const { id } = req.params;
   const { title, description, advice, country, city, image, creator } =
     req.body;
@@ -159,7 +160,7 @@ router.post("/recommendations/:id/edit", isLoggedIn, (req, res, next) => {
 });
 
 // DELETE: route to delete a posted recommendation from the db
-router.post("/recommendations/:id/delete", (req, res, next) => {
+router.post("/recommendations/:id/delete", isCreator, (req, res, next) => {
   const { id } = req.params;
 
   Recom.findByIdAndDelete(id)
