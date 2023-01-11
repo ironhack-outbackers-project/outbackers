@@ -8,23 +8,12 @@ body {
   background-color: #0d2237;
 }
 
-/* section on index */
 section {
-  width: 100%;
   display: flex;
 }
 
 h1 {
   margin: auto;
-}
-
-/* create-edit forms */
-.form {
-  margin-top: 30px;
-}
-
-.form .container {
-  width: 800px;
 }
 
 /* error message */
@@ -39,8 +28,8 @@ h1 {
 
 /* containers */
 .container {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 /*container on edit views*/
@@ -57,4 +46,12 @@ h1 {
 /* icons size */
 svg {
   width: 40px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }

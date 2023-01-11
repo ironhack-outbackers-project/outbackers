@@ -15,7 +15,23 @@ const servicesTypeArr = ['Job', 'Housing'];
 
 // READ: display list of services
 router.get("/services", (req, res, next) => {
-  Service.find()
+  let {serviceType} = req.query;
+  let {country} = req.query;
+
+  let filter = {};
+  if(serviceType) {
+    filter = {serviceType: {$eq: serviceType}}
+  }
+
+  if(country) {
+    const capitalizeCountry = country[0].toUpperCase() + country.slice(1)
+    filter = {country: {$eq: capitalizeCountry}}
+
+    console.log(capitalizeCountry)
+  }
+  
+
+  Service.find(filter)
     .then((servicesFromDB) => {
       res.render("services/services-list", { services: servicesFromDB });
     })
@@ -75,6 +91,7 @@ router.get("/services/:id", (req, res, next) => {
   const { id } = req.params;
 
   Service.findById(id)
+    .populate({ path: 'creator', select: '-password' })
     .then((serviceDetails) => {
       res.render("services/services-details", serviceDetails);
     })
@@ -147,7 +164,13 @@ router.post("/services/:id/edit", isCreator, (req, res, next) => {
     return;
   }
 
-  Service.findByIdAndUpdate(id, {title, serviceType, description, country, city, language, date, image, creator}, { new: true })
+  const data = {title, serviceType, description, country, city, language, date, creator}
+
+  if(image){
+    data.image = image;
+  }
+
+  Service.findByIdAndUpdate(id, data, { new: true })
     .then(() => res.redirect(`/services/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);

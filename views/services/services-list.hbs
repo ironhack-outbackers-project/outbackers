@@ -1,18 +1,20 @@
-<div class="container mt-5 offset-md">
-    <h2 class="mb-5">Find your next stay or job </h2>
+<div class="container mt-5" style="color: #f7f7ff;">
+    <h2 class="mb-2" >Find your next stay or job</h2>
+    <a href="/services" style="color: #f7f7ff;">All</a> •
+    <a href="/services?serviceType=Housing" style="color: #f7f7ff;">Housing</a> •
+    <a href="/services?serviceType=Job" style="color: #f7f7ff;">Jobs</a>
 
-    <div class="row mb-4">
-        {{#each services}}
-        <div class="col-12 col-md-3 card-group">
-            <div class="card product">
-                <img class="card-img-top p-3" src="{{image}}" alt="Card image">
-                <div class="card-body">
-                    <h5 class="card-title">{{title}}</h5>
-                    <p class="card-text"> Service Type: {{serviceType}}</p>
-                    <a href="/services/{{_id}}" class="btn btn-dark">More Details</a>
-                </div>
+    <div class="row mb-4 mt-5">
+    {{#each services}}
+        <div class="col-12 col-md-3 card-group" style="width: 15rem; color: #000000">
+            <img class="card-img-top" src="{{image}}" alt="Card image cap">
+            <div class="card-body p-2" style="background-color: #f7f7ff;">
+                <h5 class="card-title">{{title}}</h5>
+                <p class="card-text"><strong>Service Type:</strong> {{serviceType}}</p>
+                <a href="/services/{{_id}}" class="btn btn-dark">More Details</a>
             </div>
         </div>
-        {{/each}}
+    {{/each}}
     </div>
+    
 </div>
