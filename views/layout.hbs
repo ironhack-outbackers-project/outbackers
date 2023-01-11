@@ -26,63 +26,46 @@
 
         <a class="navbar-brand" href="/"><img src="https://cdn-icons-png.flaticon.com/512/71/71423.png" alt="Logo" width="30" height="25" class="d-inline-block align-text-top" />Outbackers</a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" ><span class="navbar-toggler-icon"></span></button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-lg-0 ">
-            <li class="nav-item">
-              <a class="nav-link active" href="/">Home</a>
-            </li>
+          <ul class="navbar-nav me-auto mb-lg-0">
 
-            <li class="nav-item">
-              <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  All</a>
-              
-                {{!-- dropdown menu --}}
-                <ul class="dropdown-menu">
-                  {{#if userDetails}}
-                  <li><a class="dropdown-item" href="/services"> List of Services</a></li>
-                  <li><a class="dropdown-item" href="/services/create">Create a new service</a></li>
-                  <li><hr class="dropdown-divider" /></li>
+            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/services">Services</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/recommendations">Recommendations</a></li>
 
-                  <li><a class="dropdown-item" href="/recommendations"> List of Recommendations</a></li>
-                  <li><a class="dropdown-item" href="/recommendations/create">Create a new recommendation</a></li>
-                  {{else}}
-                  <li><a class="dropdown-item" href="/services">List of Services</a></li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li><a class="dropdown-item" href="/recommendations"> List of Recommendations</a></li>
-                  {{/if}}
-                </ul>
-              
-              </li>
           </ul>
 
-          <span class="navbar-text">
-            <li class="nav-link active">
-              {{#if userDetails}}
-              Welcome back {{userDetails.email}} |
-              <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/logout">Logout</a>
-              {{else}}
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li>
-                  <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/signup">Signup</a> |
-                </li>
-                <li>
-                  <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/login">Login</a>
-                </li>
-              </ul>
-              {{/if}}
-            </li>
-          </span>
+          {{#if userDetails}} 
+          {{!-- dropdown menu --}}
+            <li class="nav-item"><li class="nav-item dropdown p-3">
+            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create</a>
+              
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/services/create">New Service</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="/recommendations/create">New Recommendation</a></li>
+            </ul>
+          </li>
 
-        </div>
+          <li class="nav-text"> Welcome back {{userDetails.email}} |</li>
+
+          <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/logout">Logout</a>
+          {{else}}
+          <span>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li>
+                <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/signup">Signup</a> |
+              </li>
+              <li>
+                <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/login">Login</a>
+              </li>
+            </ul>
+          </span>
+          {{/if}}
+          
       </div>
     </nav>
-
-  </header>
+</header>
 
   {{{body}}}
 

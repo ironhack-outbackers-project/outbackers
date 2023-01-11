@@ -1,88 +1,89 @@
-<div class="container">
-    <h2>Create a new post:</h2>
+<section class="justify-content-center mt-5">
+    <div class="card rounded-5 mb-3 col-5">
 
-    <div class="form">
-        <form action="/services/create" method="post">
-            <div class="container">
-                <div class="row p-1">
-                    {{!-- title --}}
-                    <div class="col-8 was-validated">
-                        <label>Title</label>
-                        <input class="form-control" required type="text" name="title" />
-                        <div class="invalid-feedback">Please provide a title</div>
+        <div class="card-body">
+            <h2 class="m-3">Create a new post:</h2>
+            <form action="/services/create" method="post">
+                <div class="container">
+                    <div class="row p-1">
+                        {{!-- title --}}
+                        <div class="col-8 was-validated">
+                            <label>Title</label>
+                            <input class="form-control" required type="text" name="title" />
+                            <div class="invalid-feedback">Please provide a title</div>
+                        </div>
+                        {{!-- service type --}}
+                        <div class="col-4 was-validated">
+                            <label>Service Type </label>
+                            <select class="form-select" required name="serviceType">
+                                <option value=""></option>
+                                {{#each servicesTypeArr}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <div class="invalid-feedback">Please choose one</div>
+                        </div>
                     </div>
-                    {{!-- service type --}}
-                    <div class="col-4 was-validated">
-                        <label>Service Type </label>
-                        <select class="form-select" required name="serviceType">
-                            <option value=""></option>
-                            {{#each servicesTypeArr}}
-                            <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
-                        <div class="invalid-feedback">Please choose one</div>
+                    <div class="row p-1">
+                        {{!-- description --}}
+                        <div class="col was-validated">
+                            <label>Description:</label>
+                            <textarea class="form-control" required name="description" cols="30" rows="6"
+                                placeholder="Write here"></textarea>
+                            <div class="invalid-feedback">Please provide a description</div>
+                        </div>
                     </div>
-                </div>
-                <div class="row p-1">
-                    {{!-- description --}}
-                    <div class="col was-validated">
-                        <label>Description:</label>
-                        <textarea class="form-control" required name="description" cols="30" rows="6"
-                            placeholder="Write here"></textarea>
-                        <div class="invalid-feedback">Please provide a description</div>
+                    <div class="row p-1">
+                        {{!-- country --}}
+                        <div class="col">
+                            <label>Country</label>
+                            <select name="country" class="form-control">
+                                {{#each countryArr}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{!-- city --}}
+                        <div class="col">
+                            <label>City</label>
+                            <input class="form-control" type="text" name="city">
+                        </div>
                     </div>
-                </div>
-                <div class="row p-1">
-                    {{!-- country --}}
-                    <div class="col">
-                        <label>Country</label>
-                        <select name="country" class="form-control">
-                            {{#each countryArr}}
-                            <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
+                    <div class="row p-1">
+                        {{!-- language --}}
+                        <div class="col">
+                            <label>Languages</label>
+                            <select multiple name="language" class="form-control">
+                                {{#each languageArr}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
-                    {{!-- city --}}
-                    <div class="col">
-                        <label>City</label>
-                        <input class="form-control" type="text" name="city">
+                    <div class="row p-1">
+                        {{!-- date --}}
+                        <div class="col">
+                            <label>Date</label>
+                            <input class="form-control" name="date" type="text" value="01/01/2023 - 02/01/2023" />
+                        </div>
                     </div>
-                </div>
-                <div class="row p-1">
-                    {{!-- language --}}
-                    <div class="col">
-                        <label>Languages</label>
-                        <select multiple name="language" class="form-control">
-                            {{#each languageArr}}
-                            <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                        </select>
+                    <div class="row p-1 mb-3">
+                        {{!-- image --}}
+                        <div class="col">
+                            <label>Image </label>
+                            <input class="form-control" type="file" id="image">
+                        </div>
                     </div>
-                </div>
-                <div class="row p-1">
-                    {{!-- date --}}
-                    <div class="col">
-                        <label>Date</label>
-                        <input class="form-control" name="date" type="text" value="01/01/2023 - 02/01/2023" />
-                    </div>
-                </div>
-                <div class="row p-1">
-                    {{!-- image --}}
-                    <div class="col">
-                        <label>Image </label>
-                        <input class="form-control" type="file" id="image">
-                    </div>
-                </div>
-            </div>
 
-            <br />
-            <a href="/services" class="btn btn-light">Cancel</a>
-            <button class="btn btn-primary" type="submit">Create</button>
-        </form>
+                    <a href="/services" class="btn btn-light">Cancel</a>
+                    <button class="btn btn-dark" type="submit">Create</button>
+                </div>
+            </form>
 
-        {{!-- error message for validation --}}
-        {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-        {{/if}}
+            {{!-- error message for validation --}}
+            {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+            {{/if}}
+        </div>
     </div>
-</div>
+</section>

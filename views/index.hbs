@@ -126,33 +126,34 @@
 </section>
 
 {{!-- search for services --}}
-<section style="background-color: #FF842B;">
-  <div class="container d-flex align-content-center">
+<section class="justify-content-center" style="background-color: #FF842B;">
+  <div class="container align-content-center">
 
     <div class="row">
       <h1 class="mb-4">Sapien lorem nulla consequat</h1>
       <p class="mb-4">Lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus consequat.</p>
 
-      <div class="row mb-4 rounded-5 align-items-center" style="background-color: #0d2237; color: #f7f7ff">
-        <div class="col-5">
-          <img class="card-img-top" src="https://images.pexels.com/photos/5137969/pexels-photo-5137969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-        </div>
+      <div class="row mb-4 rounded-5 align-items-center overflow-hidden" style="background-color: #0d2237; color: #f7f7ff">
         <div class="col-4">
-          <h2 class="mb-4">Magna etiam dolor</h2>
-          <p class="mb-4">Morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur amet sapien risus, commodo eget convallis enim turpis, lorem ipsum dolor sit amet nullam.
+          <img class="img-fluid h-100" src="https://images.pexels.com/photos/5137969/pexels-photo-5137969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        </div>
+        <div class="col-6">
+          <h2 class="mb-4">Housing opportunities</h2>
+          <p class="mb-4">
+            Whatever your budget, there is no shortage of places to sleep while traveling. Here's the best way to find hostels, house sitting, couch surfing and other accommodation options to fit your travel style.
           </p>
-          <a href="/services" class="btn btn-light rounded-pill w-50 p-3" style="background-color: #f7f7ff;">Search housing</a>
+          <a href="/services?serviceType=Housing" class="btn btn-light rounded-pill w-25 p-3" style="background-color: #f7f7ff;">Search</a>
         </div>
       </div>
 
-      <div class="row rounded-5 justify-content-end align-items-center" style="background-color: #0d2237; color: #f7f7ff">
-        <div class="col-4 text-end">
-          <h2 class="mb-4">Magna etiam dolor</h2>
+      <div class="row rounded-5 justify-content-end align-items-center overflow-hidden" style="background-color: #0d2237; color: #f7f7ff">
+        <div class="col-6 text-end">
+          <h2 class="mb-4">Job opportunities</h2>
           <p class="mb-4">Morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur amet sapien risus, commodo eget convallis enim turpis, lorem ipsum dolor sit amet nullam.</p>
-          <a href="/services" class="btn btn-light rounded-pill w-50 p-3" style="background-color: #f7f7ff;">Search jobs</a>
+          <a href="/services?serviceType=Job" class="btn btn-light rounded-pill w-25 p-3" style="background-color: #f7f7ff;">Search</a>
         </div>
-        <div class="col-5">
-          <img class="card-img-top" src="https://images.pexels.com/photos/2544829/pexels-photo-2544829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+        <div class="col-4">
+          <img class="img-fluid h-100" src="https://images.pexels.com/photos/2544829/pexels-photo-2544829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
         </div>
       </div>
 
@@ -161,25 +162,25 @@
 </section>
 
 {{!-- join the adventure --}}
-<section style="background-color: #2D7BD8;">
+<section style="background-color: #0d2237; color: #f7f7ff">
   <div class="container">
-    <div class="row p-5 d-flex justify-content-center">
+    <div class="row">
+        <div class="col">
+          <h2 class="mb-4">Got a country in mind?</h2>
+          <p>Morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 
-      <div class="col-6">
-        <h2 class="mb-4">Join the community</h2>
-          <p>Lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris,
-            fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus consequat.</p>
-      </div>
-      <div class="col-4 align-self-center">
-        <a href="/auth/signup" class="btn btn-light rounded-pill w-50 p-2" style="background-color: #f7f7ff;">Sign Up</a>
-      </div>
+          <form action="/services" method="get">
+            <input class="form-control w-25" type="search" name="country">
+            <button class="btn btn-light mt-2" type="submit">Search</button>
+          </form>
+        </div>
 
     </div>
   </div>
 </section>
 
 {{!-- footer --}}
-<section style="background-color: #0d2237; color: #000000;">
+<section style="background-color: #f7f7ff; color: #000000;">
   <div class="container text-center">
     <div class="row d-flex justify-content-center">
       <div class="col-3">
