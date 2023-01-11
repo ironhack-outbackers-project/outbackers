@@ -3,8 +3,7 @@ const Recom = require("../models/Recom.model");
 const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 
-const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/library-project";
+const MONGO_URI = ;
 
 mongoose
   .connect(MONGO_URI)
