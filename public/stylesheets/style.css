@@ -54,3 +54,8 @@ section {
 h1 {
   margin: auto;
 }
+
+/* icons size */
+svg {
+  width: 40px;
+}
