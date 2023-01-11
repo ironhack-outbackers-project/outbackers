@@ -1,46 +1,46 @@
-<div class="container signup-login">
-  <div class="row justify-content-end align-items-center">
-
-    <div class="col-5">
-      <img class="card-img-top rounded-3"
-        src="https://images.pexels.com/photos/10406685/pexels-photo-10406685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt="">
-    </div>
-
-    <div class="col-5">
-      <div class="form">
-        <form action="/auth/login" method="POST">
-          <div class="container justify-content-end align-items-center">
-            <h3>Log in</h3>
-            <p class="mb-2">and start exploring</p>
-            <div class="row p-1">
-              <div class="col-5">
-                <label>Username</label>
-                <input class="form-control" type="text" name="username" placeholder="Your username" />
+<section class="justify-content-center mt-5">
+  <div class="card rounded-5 mb-3 overflow-hidden col-8">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-7">
+        <img class="card-img-top"
+          src="https://images.pexels.com/photos/10406685/pexels-photo-10406685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="">
+      </div>
+      <div class="col-5">
+        <div class="card-body">
+          <form action="/auth/login" method="POST">
+            <div class="container">
+              <h3>Log in</h3>
+              <p class="mb-2">and start exploring</p>
+              <div class="row p-1">
+                <div class="col-7">
+                  <label>Username</label>
+                  <input class="form-control" type="text" name="username" placeholder="Your username" />
+                </div>
               </div>
-            </div>
-            <div class="row p-1">
-              <div class="col-5">
-                <label>Email</label>
-                <input class="form-control" type="email" name="email" placeholder="Your email" />
+              <div class="row p-1">
+                <div class="col-7">
+                  <label>Email</label>
+                  <input class="form-control" type="email" name="email" placeholder="Your email" />
+                </div>
               </div>
-            </div>
-            <div class="row p-1 mb-2">
-              <div class="col-5">
-                <label>Password</label>
-                <input class="form-control" type="password" name="password" placeholder="Your password" />
+              <div class="row p-1 mb-2">
+                <div class="col-7">
+                  <label>Password</label>
+                  <input class="form-control" type="password" name="password" placeholder="Your password" />
+                </div>
               </div>
+
+              <button class="btn btn-dark" type="submit">Log in</button>
+
             </div>
-            
-            <button class="btn btn-dark" type="submit">Log in</button>
+            {{#if errorMessage}}
+            <p class="error">{{errorMessage}}</p>
+            {{/if}}
 
-          </div>
-          {{#if errorMessage}}
-          <p class="error">{{errorMessage}}</p>
-          {{/if}}
-
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

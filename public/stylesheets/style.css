@@ -5,8 +5,7 @@
 
 body {
   font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* background-color: #0d2237;
-  color: #f7f7ff; */
+  background-color: #0d2237;
 }
 
 /* section on index */
@@ -22,8 +21,6 @@ h1 {
 /* create-edit forms */
 .form {
   margin-top: 30px;
-  /* display: flex;
-  justify-content: end; */
 }
 
 .form .container {
@@ -60,8 +57,4 @@ h1 {
 /* icons size */
 svg {
   width: 40px;
-}
-
-.signup-login {
-  margin-top: 50px;
 }
