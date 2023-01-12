@@ -11,6 +11,15 @@ body {
   background-color: #0d2237;
 }
 
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #0d2237;
+}
+
 /* error message */
 .error {
   background: #f02b63;
@@ -19,16 +28,6 @@ body {
   margin: 20px auto;
   padding: 20px;
   width: 100%;
-}
-
-/* containers and sections*/
-.container {
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-
-section {
-  display: flex;
 }
 
 .carousel-inner img {
@@ -42,13 +41,14 @@ svg {
   width: 40px;
 }
 
-li {
-  list-style: none;
+/* containers and sections*/
+.container {
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
 
-a {
-  text-decoration: none;
-  color: #0d2237;
+section {
+  display: flex;
 }
 
 /* cards service list page */
@@ -115,6 +115,14 @@ a {
   border-radius: 10px;
 }
 
+/* cards index - footer */
+.card-footer {
+  margin: 10px;
+  border-radius: 10px;
+  width: 400px;
+  /* height: 200px; */
+}
+
 /* card details - details */
 .card-details {
   width: 600px;
@@ -122,4 +130,32 @@ a {
   border-radius: 10px;
   overflow: hidden;
   background-color: #f7f7ff;
+}
+
+/* card details - comment box */
+.card-comment {
+  width: 600px;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f7f7ff;
+}
+
+.card-comment form {
+  width: 100%;
+
+}
+
+/* card - signup */
+.card-login {
+  width: 600px;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f7f7ff;
+}
+
+.card-login form {
+  width: 100%;
+
 }
