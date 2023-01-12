@@ -1,44 +1,53 @@
-<section class="justify-content-center mt-5">
+<section class="justify-content-center mt-4">
   <div class="container align-content-center">
-    <div class="container-cards mt-4">
+    <div class="container-cards">
 
-    <div class="card-login">
-      <div class="card-body">
-        <form action="/auth/login" method="POST">
-          <div class="container">
-            <h3>Log in</h3>
-            <p class="mb-2">and start exploring</p>
-            <div class="row p-1">
-              <div class="col-7">
-                <label>Username</label>
-                <input class="form-control" type="text" name="username" placeholder="Your username" />
+      <div class="card-login" style="background-color: #47bcd4;">
+        <div class="card-body">
+          <form action="/auth/login" method="POST">
+            <div class="container">
+              <div class="row p-2">
+                <div class="col">
+                  <h3>Log in</h3>
+                  <p class="mb-2">and start exploring</p>
+                </div>
               </div>
-            </div>
-            <div class="row p-1">
-              <div class="col-7">
-                <label>Email</label>
-                <input class="form-control" type="email" name="email" placeholder="Your email" />
+              <div class="row p-2">
+                <div class="col">
+                  <label>Username</label>
+                  <input class="form-control" type="text" name="username" placeholder="username" />
+                </div>
               </div>
-            </div>
-            <div class="row p-1 mb-2">
-              <div class="col-7">
-                <label>Password</label>
-                <input class="form-control" type="password" name="password" placeholder="Your password" />
+              <div class="row p-2">
+                <div class="col">
+                  <label>Email</label>
+                  <input class="form-control" type="email" name="email" placeholder="email" />
+                </div>
               </div>
+              <div class="row p-2">
+                <div class="col">
+                  <label>Password</label>
+                  <input class="form-control" type="password" name="password" placeholder="password" />
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col">
+                  <button class="btn btn-dark" type="submit">Log in</button>
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col">
+                  {{#if errorMessage}}
+                  <p class="error">{{errorMessage}}</p>
+                  {{/if}}
+                </div>
+              </div>
+
             </div>
-
-            <button class="btn btn-dark" type="submit">Log in</button>
-
-          </div>
-          {{#if errorMessage}}
-          <p class="error">{{errorMessage}}</p>
-          {{/if}}
-
-        </form>
+          </form>
+        </div>
       </div>
+
     </div>
-
-  </div>
-
   </div>
 </section>

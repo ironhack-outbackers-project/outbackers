@@ -1,4 +1,4 @@
-<section class="justify-content-center mt-5">
+<section class="justify-content-center mt-4">
   <div class="container align-content-center">
     <div class="container-cards">
 
@@ -17,11 +17,11 @@
 
           {{!-- if logged in display creator's email --}}
           {{#if userDetails}}
-          <p>Creator: {{serviceDetails.creator.email}}</p>
+            <p>Creator: {{serviceDetails.creator.email}}</p>
 
-            {{!-- if isOwner of the post, can edit and delete --}}
+            {{!-- if isOwner, can edit and delete --}}
             {{#if isOwner}}
-            <div class="d-flex justify-content-end">
+            <div class="d-flex">
               <a href="/services/{{serviceDetails._id}}/edit" class="btn btn-light">Edit</a>
               <form action="/services/{{serviceDetails._id}}/delete" method="POST">
                 <button class="btn btn-dark">Delete</button>
@@ -38,29 +38,29 @@
           <h2>Respond to this post</h2>
 
             {{!-- if there are comments, where it will be displayed --}}
-            <h6>List of comments</h6>
             {{#if comments}}
-            {{#each comments}}
-            <p>{{message}}</p>
-            {{!-- <h6>{{creator}}</h6> --}}
-            <br>
-            {{/each}}
+            <h6>List of comments</h6>
+              {{#each comments}}
+              <p>{{message}}</p>
+              {{!-- <h6>{{creator}}</h6> --}}
+              <br>
+              {{/each}}
             {{/if}}
         </div>
-    </div>
 
-    <div class="card-body d-flex align-items-end">
-      <form action="/services/{{serviceDetails._id}}" method="post">
-        {{#if userDetails}}
-        <div>
-          <label>Leave a personalised message</label>
-          <textarea class="form-control" name="comment" cols="30" rows="5"></textarea>
-        </div>
-    
-        <button type="submit" class="btn btn-dark mt-2 justify-content-end">Send</button>
-      </form>
-    
-      {{/if}}
+      <div class="card-body d-flex align-items-end">
+        <form action="/services/{{serviceDetails._id}}" method="post">
+          {{#if userDetails}}
+          <div>
+            <label>Leave a personalised message</label>
+            <textarea class="form-control" name="comment" cols="30" rows="5"></textarea>
+          </div>
+      
+          <button type="submit" class="btn btn-dark mt-2 justify-content-end">Send</button>
+        </form>
+        {{else}}
+        <h6 style="color: #f02b63;">Sign up or login in to be able to respond to this post.</h6>
+        {{/if}}
     </div>
   </div>
 </section>
