@@ -93,7 +93,7 @@ router.get("/services/:id", (req, res, next) => {
   Service.findById(id)
     .populate({ path: 'creator', select: '-password' })
     .then((serviceDetails) => {
-      const isOwner = req.session?.currentUser?._id === serviceDetails.creator._id.toString();
+      const isOwner = req.session?.currentUser?._id === serviceDetails.creator?._id.toString();
       
       res.render("services/services-details", {
         serviceDetails: serviceDetails,
@@ -112,7 +112,8 @@ router.post("/services/:id", isLoggedIn, (req, res, next) => {
   const { comment } = req.body;
 
   Service.findByIdAndUpdate(id, {$push: {comments: {message: comment, creator: req.session.currentUser._id}}}, { new: true })
-    .then(() => {
+    .then((responseFromDB) => {
+      console.log(responseFromDB);
       res.redirect(`/services/${id}`);
     })
     .catch((error) => {

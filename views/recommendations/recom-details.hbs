@@ -1,72 +1,67 @@
 <section class="justify-content-center mt-5">
-<div class="container">
-  <div class="row p-1">
+  <div class="container align-content-center">
+    <div class="container-cards">
 
-    {{! details of the posted recommendation }}
-    <div class="col-12 col-md-6 d-flex">
-      <div class="card product flex-fill">
-        <img class="card-img-top" src="{{image}}" alt="Card image" />
-        <div class="card-body">
-          <h5 class="card-title">{{title}}</h5>
-          <p class="card-text">
-            <hr />
+        {{!post section}}
+        <div class="card-details">
+          <div class="card-header p-0">
+            <img class="img-fluid h-100" src="{{image}}" alt="">
+          </div>
+          <div class="card-body p-3">
+            <h2 class="mb-3">{{title}}</h2>
             <p><strong>Country:</strong> {{country}}</p>
             <p><strong>Description:</strong> {{description}}</p>
             <hr />
             <p><strong>Creator:</strong> {{creator}}</p>
-      
-            {{! if logged in }}
-            {{#if userDetails}}
-              <div class="d-flex justify-content-end">
-                <a href="/recommendations/{{_id}}/edit" class="btn btn-light">Edit</a>
-                <form action="/recommendations/{{_id}}/delete" method="POST">
-                  <button class="btn btn-primary">Delete</button>
-                </form>
-              </div>
-                      {{else}}
-            <h5>Sign up or login to gain access to the creator's email for further contact</h5>
-            {{/if}}
-      
-            {{! if there are comments, you can see them}}
-            {{#if comments}}
-              {{#each comments}}
-                <!-- <p><strong>{{creator}}</strong></p>-->
-                <p>{{message}}</p>
-                <br>
-              {{/each}}
-            {{else}}
-              <p> <strong>Log in </strong>to your account to leave a comment!</p>
-            {{/if}}
-          </p>
-        </div>
-      </div>
-    </div>
 
-    {{! contact form }}
-    <div class="form">
-      <form action="/recommendations/{{_id}}" method="POST">
-      {{#if userDetails}}
-        <div class="col-12 col-md-6 d-flex">
-          <div class="card product flex-fill">
-            
-            <form class="p-3">
-              <h3>Comment</h3>
-              
-              <div class="mb-3">
-                <label>Leave a comment:</label>
-                <textarea placeholder="Start by typing your username … " name="comment" class="form-control" rows="6"></textarea>
-              </div>
-              <div class="mb-3 d-flex justify-content-end">
-                <button class="btn btn-primary" type="submit">Submit</button>
-              </div>
-            </form>
+            {{!-- if logged in display creator's email --}}
+            {{#if userDetails}}
+            <p>Creator: {{serviceDetails.creator.email}}</p>
+
+            {{!-- if isOwner of the post, can edit and delete --}}
+            {{#if isOwner}}
+            <div class="d-flex justify-content-end">
+              <a href="/services/{{serviceDetails._id}}/edit" class="btn btn-light">Edit</a>
+              <form action="/services/{{serviceDetails._id}}/delete" method="POST">
+                <button class="btn btn-dark">Delete</button>
+              </form>
+            </div>
+            {{/if}}
+
+            {{/if}}
 
           </div>
         </div>
-      {{/if}}
-      </form>
-    </div>
 
-  </div>
-</div>
+
+        <div class="card-comment">
+          <div class="card-header">
+            <h4 class="card-title">Other backpackers have said ...</h4>
+            {{!-- if there are comments, where it will be displayed --}}
+            {{#if comments}}
+            {{#each comments}}
+            <p> {{message}}</p>
+            {{/each}}
+            <br>
+            {{/if}}
+
+            {{!writing a new comment}}
+            <div class="card-body d-flex align-items-end">
+              <form action="/recommendations/{{_id}}" method="post">
+                {{#if userDetails}}
+                <div>
+                  <label><strong>Leave a comment</strong></label>
+                  <textarea class="form-control" name="comment" cols="30" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark mt-2 justify-content-end">Send</button>
+              </form>
+              {{/if}}
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </div>
 </section>
