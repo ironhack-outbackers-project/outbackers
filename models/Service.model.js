@@ -22,7 +22,14 @@ const serviceSchema = new Schema(
         creator: {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
+        },
+        comments: [{
+            message: String,
+            creator: {
+              type: Schema.Types.ObjectId,
+              ref: 'User'
+            },
+            }]
     },
     {
         timestamps: true

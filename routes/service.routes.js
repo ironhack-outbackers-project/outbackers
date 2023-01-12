@@ -107,6 +107,30 @@ router.get("/services/:id", (req, res, next) => {
     });
 });
 
+// UPDATE COMMENT: 
+router.post("/services/:id", isLoggedIn, (req, res, next) => {
+  const { id } = req.params;
+  const { comment } =
+  req.body;
+
+  Service.findByIdAndUpdate(id,
+    {
+      $push: {comments: {message:comment, creator: req.session.currentUser._id}}
+    },
+    { new: true }
+  )
+    .then(() => {
+      res.redirect(`/services/${id}`);
+    })
+    .catch((error) => {
+      console.log(
+        "Error displaying new comment",
+        error
+      );
+      next();
+    });
+});
+
 // UPDATE: display form to update a specific service
 router.get("/services/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
