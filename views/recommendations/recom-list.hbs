@@ -1,3 +1,4 @@
+<!--
 <div class="container">
   <h2>Take a look at other backpackers' recommendations! </h2>
   <br />
@@ -9,6 +10,7 @@
           <img class="card-img-top" src="{{image}}" alt="Card image" />
           <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">Country: {{country}}</p>
             <p class="card-text">
               Description:
               {{description}}
@@ -28,3 +30,38 @@
       recommendation</a>
   {{/if}}
 </div>
+-->
+
+
+<section>
+    <div class="container mt-5" style="color: #f7f7ff;">
+        <h2 class="mb-2">Take a look at other backpackers' recommendations</h2>
+
+        <br />
+        {{#if userDetails}}
+        <a href="/recommendations/create" class="btn btn-primary">Create a new
+          recommendation</a>
+        {{/if}}
+        <br />
+
+        <div class="container-cards mt-4">
+            {{#each recommendations}}
+                <div class="card">
+                    <div class="card-header p-0">
+                        <img src="{{image}}" alt="default image" />
+                    </div>
+                    <div class="card-body">
+                        <h4>{{title}}</h4>
+                        <p class="card-text">Country: {{country}}</p>
+                        <span class="tag tag-teal"> <a href="/recommendations/{{_id}}" class="btn btn-primary">More
+                  Details</a></span>
+                      
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    
+    </div>
+</section>
+
+-->

@@ -50,10 +50,8 @@ router.post("/recommendations/create", isLoggedIn, (req, res, next) => {
     image,
   } = req.body;
 
-  const creator = req.session.currentUser._id;
-
   // check if title, description and creator are provided
-  if (title === "" || description === "" || creator === "") {
+  if (title === "" || description === "") {
     res.status(400).render("recommendations/recom-create", {
       errorMessage:
         "All fields are mandatory. Please provide a title, description and creator's name.",
@@ -67,8 +65,7 @@ router.post("/recommendations/create", isLoggedIn, (req, res, next) => {
     advice,
     country,
     city,
-    image,
-    creator,
+    image
   })
     .then(() => res.redirect("/recommendations"))
     .catch((error) => {
@@ -84,7 +81,6 @@ router.get("/recommendations/:id", (req, res, next) => {
   const { id } = req.params;
 
   Recom.findById(id)
-    .populate({path: "creator"})
     .then((recommendationDetails) => {
       res.render("recommendations/recom-details", recommendationDetails);
     })
@@ -150,7 +146,7 @@ router.get("/recommendations/:id/edit", isCreator, (req, res, next) => {
 // UPDATE: display form to actually update a specific recommendation
 router.post("/recommendations/:id/edit", isCreator,  (req, res, next) => {
   const { id } = req.params;
-  const { title, description, advice, country, city, image, comment } =
+  const { title, description, advice, country, city, image } =
     req.body;
 
   // check if title, description and creator are provided

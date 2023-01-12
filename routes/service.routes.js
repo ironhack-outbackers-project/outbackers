@@ -180,7 +180,7 @@ router.get("/services/:id/edit", isCreator, (req, res, next) => {
 // UPDATE: display form to actually update a specific service
 router.post("/services/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
-  const {title, serviceType, description, country, city, language, date, image, creator} = req.body;
+  const {title, serviceType, description, country, city, language, date, image, creator, comment} = req.body;
 
   // check if title, description and creator are provided
   if (title === "" || description === "") {
