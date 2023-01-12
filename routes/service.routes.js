@@ -54,7 +54,7 @@ router.get("/services/create", isLoggedIn, (req, res, next) => {
     })
     .catch((error) => {
       console.log("Error displaying form", error);
-      next();
+      next(error);
     });
 });
 
@@ -95,7 +95,6 @@ router.get("/services/:id", (req, res, next) => {
     .then((serviceDetails) => {
 
       const isOwner = req.session.currentUser._id === serviceDetails.creator._id.toString();
-    
       res.render("services/services-details", {
         serviceDetails: serviceDetails,
         isOwner: isOwner
@@ -103,7 +102,7 @@ router.get("/services/:id", (req, res, next) => {
     })
     .catch((error) => {
       console.log("Error displaying details of a specific service", error);
-      next();
+      next(error);
     });
 });
 
@@ -127,7 +126,7 @@ router.post("/services/:id", isLoggedIn, (req, res, next) => {
         "Error displaying new comment",
         error
       );
-      next();
+      next(error);
     });
 });
 
@@ -176,7 +175,7 @@ router.get("/services/:id/edit", isCreator, (req, res, next) => {
     })
     .catch((error) => {
       console.log("Error displaying form for editing", error);
-      next();
+      next(error);
     });
 });
 
@@ -204,7 +203,7 @@ router.post("/services/:id/edit", isCreator, (req, res, next) => {
     .then(() => res.redirect(`/services/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);
-      next();
+      next(error);
     });
 });
 
