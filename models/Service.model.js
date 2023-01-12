@@ -27,8 +27,9 @@ const serviceSchema = new Schema(
             message: String,
             creator: {
               type: Schema.Types.ObjectId,
-              ref: 'User'
+              ref: 'User',
             },
+            username: String
             }]
     },
     {

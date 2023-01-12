@@ -2,6 +2,7 @@
   <div class="container align-content-center">
     <div class="container-cards">
 
+npm
         {{!post section}}
         <div class="card-details">
           <div class="card-header p-0">
@@ -40,7 +41,7 @@
             {{!-- if there are comments, where it will be displayed --}}
             {{#if comments}}
             {{#each comments}}
-            <p> {{message}}</p>
+            <p>{{username}}: {{message}}</p>
             {{/each}}
             <br>
             {{/if}}
@@ -57,8 +58,6 @@
               </form>
               {{/if}}
             </div>
-
-
 
           </div>
 

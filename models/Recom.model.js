@@ -29,6 +29,7 @@ const recommendationSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       },
+      username: String
       }]
   },
   {

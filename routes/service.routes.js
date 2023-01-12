@@ -111,7 +111,13 @@ router.post("/services/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const { comment } = req.body;
 
-  Service.findByIdAndUpdate(id, {$push: {comments: {message: comment, creator: req.session.currentUser._id}}}, { new: true })
+  
+
+  Service.findByIdAndUpdate(id, {$push: {comments: {
+    message: comment,
+    creator: req.session.currentUser._id,
+    username: req.session.currentUser.username
+  }}}, { new: true })
     .then((responseFromDB) => {
       console.log(responseFromDB);
       res.redirect(`/services/${id}`);

@@ -100,7 +100,11 @@ router.post("/recommendations/:id", isLoggedIn, (req, res, next) => {
 
   Recom.findByIdAndUpdate(id,
     {
-      $push: {comments: {message:comment, creator: req.session.currentUser._id}}
+      $push: {comments: {
+        message:comment,
+        creator: req.session.currentUser._id,
+        username: req.session.currentUser.username
+      }}
     },
     { new: true }
   )

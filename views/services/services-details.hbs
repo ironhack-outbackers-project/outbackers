@@ -37,17 +37,18 @@
       <div class="card-comment">
         <div class="card-header">
           <h4 class="card-title">Other backpackers have said ...</h4>
-            {{!-- if there are comments, where it will be displayed --}}
-            {{#if comments}}
-              {{#each comments}}
-                <p>   {{message}}</p>
+          <br>
+          {{!-- if there are comments, where it will be displayed --}}
+            {{#if serviceDetails.comments}}
+              {{#each serviceDetails.comments}}
+                <p>{{username}}: {{message}}</p>
               {{/each}}
               <br>
             {{/if}}
         
             {{!writing a new comment}}
             <div class="card-body d-flex align-items-end">
-                <form action="/recommendations/{{_id}}" method="post">
+                <form action="/services/{{serviceDetails._id}}" method="post">
                   {{#if userDetails}}
                     <div>
                       <label><strong>Leave a comment</strong></label>
@@ -57,8 +58,10 @@
                 </form>
               {{/if}}
             </div>
-        </div>
-      </div>
+      
+    </div>
+
+    </div>
 
    
   </div>
