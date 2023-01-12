@@ -1,7 +1,6 @@
 const router = require("express").Router();
 
 const Recom = require("../models/Recom.model");
-//const User = require("../models/User.model");
 
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
 const isLoggedIn = require("../middleware/isLoggedIn");
@@ -153,7 +152,7 @@ router.post("/recommendations/:id/edit", isCreator,  (req, res, next) => {
   if (title === "" || description === "") {
     res.status(400).render("recommendations/recom-create", {
       errorMessage:
-        "All fields are mandatory. Please provide a title, description and creator's name.",
+        "All fields are mandatory. Please provide a title and description.",
     });
     return;
   }
