@@ -9,32 +9,69 @@
 
           <h2 class="mb-4">{{title}}</h2>
           <p class="mb-4">
+              <hr />
+            <p><strong>Service type:</strong> {{serviceType}}</p>
+            <p><strong>Description:</strong> {{description}}</p>
+            <p><strong>Country:</strong> {{country}}</p>
+            <p><strong>City:</strong> {{city}}</p>
+            <p><strong>Language:</strong>{{#each language}} {{this}} {{/each}}</p>
+            <p><strong>Date:</strong> {{date}}</p>
             <hr />
-          <p><strong>Service type:</strong> {{serviceType}}</p>
-          <p><strong>Description:</strong> {{description}}</p>
-          <p><strong>Country:</strong> {{country}}</p>
-          <p><strong>City:</strong> {{city}}</p>
-          <p><strong>Language:</strong>{{#each language}} {{this}} {{/each}}</p>
-          <p><strong>Date:</strong> {{date}}</p>
-          <hr />
 
-          {{!-- if logged in --}}
-          {{#if userDetails}}
-          <p><strong>Creator:</strong> {{creator.email}}</p>
+            {{!-- if logged in --}}
+            {{#if userDetails}}
+            <p><strong>Creator:</strong> {{creator.email}}</p>
 
-          <div class="d-flex justify-content-end">
-            <a href="/services/{{_id}}/edit" class="btn btn-light">Edit</a>
-            <form action="/services/{{_id}}/delete" method="POST">
-              <button class="btn btn-dark">Delete</button>
-            </form>
-          </div>
-          {{else}}
-          <h5>Sign up or login to gain access to the creator's email for further contact</h5>
-          {{/if}}
+            <div class="d-flex justify-content-end">
+              <a href="/services/{{_id}}/edit" class="btn btn-light">Edit</a>
+              <form action="/services/{{_id}}/delete" method="POST">
+                <button class="btn btn-dark">Delete</button>
+              </form>
+            </div>
+            {{else}}
+            <h5>Sign up or login to gain access to the creator's email for further contact</h5>
+            {{/if}}
+
+            {{! if there are comments, you can see them}}
+            {{#if comments}}
+              {{#each comments}}
+                <p><strong>{{creator.email}}</strong></p>
+                <p>{{message}}</p>
+                <br>
+              {{/each}}
+            {{else}}
+              <p> <strong>Log in </strong>to your account to leave a comment!</p>
+            {{/if}}
           </p>
 
         </div>
       </div>
     </div>
+  
+      {{! contact form }}
+    <div class="form">
+      <form action="/services/{{_id}}" method="POST">
+      {{#if userDetails}}
+        <div class="col-12 col-md-6 d-flex">
+          <div class="card product flex-fill">
+            
+            <form class="p-3">
+              <h3>Comment</h3>
+              <div class="mb-3">
+                <label>Leave a comment</label>
+                <textarea name="comment" class="form-control" rows="6"></textarea>
+              </div>
+              <div class="mb-3 d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      {{/if}}
+      </form>
+    </div>
+
+
   </div>
 </section>

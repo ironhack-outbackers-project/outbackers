@@ -4,7 +4,6 @@ const Recom = require("../models/Recom.model");
 //const User = require("../models/User.model");
 
 // Require necessary (isLoggedOut and isLoggedIn) middleware in order to control access to specific routes
-const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isCreator = require("../middleware/isCreator");
 
@@ -49,9 +48,9 @@ router.post("/recommendations/create", isLoggedIn, (req, res, next) => {
     country,
     city,
     image,
-    creator,
-    // posts,
   } = req.body;
+
+  const creator = req.session.currentUser._id;
 
   // check if title, description and creator are provided
   if (title === "" || description === "" || creator === "") {
@@ -70,7 +69,6 @@ router.post("/recommendations/create", isLoggedIn, (req, res, next) => {
     city,
     image,
     creator,
-    // posts,
   })
     .then(() => res.redirect("/recommendations"))
     .catch((error) => {
@@ -86,12 +84,37 @@ router.get("/recommendations/:id", (req, res, next) => {
   const { id } = req.params;
 
   Recom.findById(id)
+    .populate({path: "creator"})
     .then((recommendationDetails) => {
       res.render("recommendations/recom-details", recommendationDetails);
     })
     .catch((error) => {
       console.log(
         "Error displaying details of a specific recommendation",
+        error
+      );
+      next();
+    });
+});
+
+// UPDATE COMMENT: 
+router.post("/recommendations/:id", isLoggedIn, (req, res, next) => {
+  const { id } = req.params;
+  const { comment } =
+  req.body;
+
+  Recom.findByIdAndUpdate(id,
+    {
+      $push: {comments: {message:comment, creator: req.session.currentUser._id}}
+    },
+    { new: true }
+  )
+    .then(() => {
+      res.redirect(`/recommendations/${id}`);
+    })
+    .catch((error) => {
+      console.log(
+        "Error displaying new comment",
         error
       );
       next();
@@ -127,11 +150,11 @@ router.get("/recommendations/:id/edit", isCreator, (req, res, next) => {
 // UPDATE: display form to actually update a specific recommendation
 router.post("/recommendations/:id/edit", isCreator,  (req, res, next) => {
   const { id } = req.params;
-  const { title, description, advice, country, city, image, creator } =
+  const { title, description, advice, country, city, image, comment } =
     req.body;
 
   // check if title, description and creator are provided
-  if (title === "" || description === "" || creator === "") {
+  if (title === "" || description === "") {
     res.status(400).render("recommendations/recom-create", {
       errorMessage:
         "All fields are mandatory. Please provide a title, description and creator's name.",
@@ -148,7 +171,6 @@ router.post("/recommendations/:id/edit", isCreator,  (req, res, next) => {
       country: country,
       city: city,
       image: image,
-      creator: creator,
     },
     { new: true }
   )

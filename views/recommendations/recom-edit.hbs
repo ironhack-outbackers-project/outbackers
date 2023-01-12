@@ -117,6 +117,14 @@
       >Cancel</a>
       <button class="btn btn-primary" type="submit">Update</button>
     </form>
+    
+    <div class="row p-1">
+      {{! creator }}
+      <div class="col was-validated">
+        <label>Comments</label>
+        <input class="form-control" type="text" name="creator" value="{{recommendations.creator}}" />
+      </div>
+    </div>
 
     {{! error message for validation }}
     {{#if errorMessage}}
