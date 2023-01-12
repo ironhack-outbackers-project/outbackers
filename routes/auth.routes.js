@@ -76,7 +76,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       } else if (error.code === 11000) {
         res.status(500).render("auth/signup", {
           errorMessage:
-            "Username and email need to be unique. Provide a valid username or email.",
+            "Username and email needs to be unique. Provide a valid username or email.",
         });
       } else {
         next(error);
@@ -107,7 +107,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   // - either length based parameters or we check the strength of a password
   if (password.length < 8) {
     return res.status(400).render("auth/login", {
-      errorMessage: "Your password needs to be at least 8 characters long.",
+      errorMessage: "Incorrect password. Please try again.",
     });
   }
 

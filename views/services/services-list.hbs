@@ -1,4 +1,4 @@
-<section>
+<section  class="justify-content-center mt-4">
     <div class="container mt-5" style="color: #f7f7ff;">
         <h2 class="mb-2">Find your next stay or job</h2>
 
@@ -6,8 +6,7 @@
         <form action="/services" method="get">
             <a href="/services" class="tag tag-teal">All</a>
             <a href="/services?serviceType=Housing" class="tag tag-teal">Housing</a>
-            <a href="/services?serviceType=Job" class="tag tag-teal">Jobs</a>
-            ||
+            <a href="/services?serviceType=Job" class="tag tag-teal">Jobs</a> |
             <labe> Search by country:</labe>
             <input class="tag" type="search" name="country">
             <button class="tag" type="submit">Search</button>
@@ -20,7 +19,7 @@
                     <img src="{{image}}" alt="default image" />
                 </div>
                 <div class="card-body">
-                    <h4>{{title}}</h4>
+                    <h5>{{title}}</h5>
                     <p class="card-text mb-0">Service Type: {{serviceType}}</p>
                     <p class="card-text">Country: {{country}}</p>
                     <span class="tag tag-teal"><a href="/services/{{_id}}">More Details</a></span>
