@@ -96,7 +96,10 @@ router.get("/services/:id", (req, res, next) => {
 
       const isOwner = req.session.currentUser._id === serviceDetails.creator._id.toString();
     
-      res.render("services/services-details", {serviceDetails, isOwner});
+      res.render("services/services-details", {
+        serviceDetails: serviceDetails,
+        isOwner: isOwner
+      });
     })
     .catch((error) => {
       console.log("Error displaying details of a specific service", error);
