@@ -44,6 +44,7 @@ svg {
 
 section {
   display: flex;
+  height: 100%;
 }
 
 /* cards service list page */
@@ -114,8 +115,7 @@ section {
 .card-footer {
   border-radius: 10px;
   width: 400px;
-  height: 300px;
-  margin-bottom: 0;
+  height: 100px;
 }
 
 /* card details - details */

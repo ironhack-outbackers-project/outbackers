@@ -1,134 +1,61 @@
-<div class="container">
-  <h2>Edit: {{recommendations.title}} </h2>
+<section class="justify-content-center mt-5">
+    <div class="container align-content-center">
+        <div class="container-cards">
 
-  <div class="form">
-    <form action="/recommendations/{{recommendations._id}}/edit" method="post">
-      <div class="container">
-        <div class="row p-1">
-          {{! title }}
-          <div class="col-6 was-validated">
-            <label>Title</label>
-            <input
-              class="form-control"
-              type="text"
-              name="title"
-              value="{{recommendations.title}}"
-            />
-            <div class="invalid-feedback">Please provide a title</div>
-          </div>
-          {{! advice }}
-          <div class="col-6 was-validated">
-            <label>Your advice</label>
-            <textarea
-              class="form-control"
-              name="advice"
-              cols="30"
-              rows="4"
-            >{{recommendations.advice}}</textarea>
-            <div class="invalid-feedback">Please provide a description</div>
-          </div>
-        </div>
-        <div class="row p-1">
-          {{! description }}
-          <div class="col was-validated">
-            <label>Description</label>
-            <textarea
-              class="form-control"
-              name="description"
-              cols="30"
-              rows="4"
-            >{{recommendations.description}}</textarea>
-            <div class="invalid-feedback">Please provide a description</div>
-          </div>
-        </div>
+            <div class="card-form">
+                <h2>Edit: {{recommendations.title}}</h2>
+                <form action="/recommendations/{{recommendations._id}}/edit" method="post">
+                    <div class="row p-2">
+                        {{!-- title --}}
+                        <div class="col was-validated">
+                            <label>Title</label>
+                            <input class="form-control" required type="text" name="title" />
+                            <div class="invalid-feedback">Please provide a title</div>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        {{!-- description --}}
+                        <div class="col was-validated">
+                            <label>Description</label>
+                            <textarea class="form-control" required name="description" cols="30" rows="6"
+                                placeholder="Share your experience here"></textarea>
+                            <div class="invalid-feedback">Please provide a description</div>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        {{!-- country --}}
+                        <div class="col-7">
+                            <label>Country</label>
+                            <select name="country" class="form-control" value="{{recommendations.country}}">
+                                {{#each countryArr}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{!-- city --}}
+                        <div class="col">
+                            <label>City</label>
+                            <input class="form-control" type="text" name="city" value="{{recommendations.city}}">
+                        </div>
+                    </div>
+                    <div class="row p-2 mb-3">
+                        {{!-- date --}}
+                        <div class="col">
+                            <label>Date</label>
+                            <input class="form-control" name="date" type="text" value="01/01/2023 - 02/01/2023" />
+                        </div>
+                    </div>
 
-        {{! country }}
-        <div class="col-6">
-          <label>Country</label>
-          <select
-            class="form-control"
-            name="country"
-            value="{{recommendations.country}}"
-          >
-            <option
-              selected
-              value="{{currentCountry}}"
-            >{{currentCountry}}</option>
-            {{#each countryArr}}
-              <option value="{{this}}">{{this}}</option>
-            {{/each}}
-          </select>
-        </div>
-        {{! city }}
-        <div class="col-6">
-          <label>City</label>
-          <input
-            class="form-control"
-            type="text"
-            name="city"
-            value="{{recommendations.city}}"
-          />
-        </div>
-      </div>
-      <div class="row p-1">
-        <div class="row p-1">
-          {{! date }}
-          <div class="col">
-            <label>Date</label>
-            <input
-              class="form-control"
-              type="date"
-              name="dateFrom"
-              value="{{recommendations.dateFrom}}"
-            />
-          </div>
-        </div>
-        <div class="row p-1">
-          {{! image }}
-          <div class="col">
-            <label>Image</label>
-            <input
-              class="form-control"
-              type="file"
-              name="image"
-              value="{{recommendations.image}}"
-            />
-          </div>
-        </div>
-        <div class="row p-1">
-          {{! creator }}
-          <div class="col was-validated">
-            <label>Creator</label>
-            <input
-              class="form-control"
-              type="text"
-              name="creator"
-              value="{{recommendations.creator}}"
-            />
-          </div>
+                    <a href="/recommendation" class="btn btn-light">Cancel</a>
+                    <button class="btn btn-dark" type="submit">Create</button>
+                </form>
+
+                {{!-- error message for validation --}}
+                {{#if errorMessage}}
+                <p class="error">{{errorMessage}}</p>
+                {{/if}}
+            </div>
         </div>
 
-      </div>
-
-      <br />
-      <a
-        href="/recommendations/{{recommendations._id}}"
-        class="btn btn-light"
-      >Cancel</a>
-      <button class="btn btn-primary" type="submit">Update</button>
-    </form>
-    
-    <div class="row p-1">
-      {{! creator }}
-      <div class="col was-validated">
-        <label>Comments</label>
-        <input class="form-control" type="text" name="creator" value="{{recommendations.creator}}" />
-      </div>
     </div>
-
-    {{! error message for validation }}
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </div>
-</div>
+</section>

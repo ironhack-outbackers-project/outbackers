@@ -10,9 +10,6 @@ const recommendationSchema = new Schema(
       type: String,
       required: true,
     },
-    advice: {
-      type: String,
-    },
     country: String,
     city: String,
     image: {

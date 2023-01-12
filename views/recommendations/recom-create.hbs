@@ -1,89 +1,54 @@
-<div class="container">
-  <h2>Share a recommendation with other backpackers:</h2>
+<section class="justify-content-center mt-5">
+    <div class="container align-content-center">
+        <div class="container-cards">
 
-  <div class="form">
-    <form action="/recommendations/create" method="post">
-      <div class="container">
-        <div class="row p-1">
-          {{! title }}
-          <div class="col was-validated">
-            <label>Title</label>
-            <input class="form-control" required type="text" name="title" />
-            <div class="invalid-feedback">Please provide a title</div>
-          </div>
-        </div>
-        <div class="row p-1">
-          {{! description }}
-          <div class="col was-validated">
-            <label>Description:</label>
-            <textarea
-              class="form-control"
-              required
-              name="description"
-              cols="30"
-              rows="4"
-              placeholder="Write about your experience! :) "
-            ></textarea>
-            <div class="invalid-feedback">Please provide a description</div>
-          </div>
-        </div>
-        <div class="row p-1">
-          {{! country }}
-          <div class="col">
-            <label>Country</label>
-            <select name="country" class="form-control">
-              {{#each countryArr}}
-                <option value="{{this}}">{{this}}</option>
-              {{/each}}
-            </select>
-          </div>
-          {{! city }}
-          <div class="col">
-            <label>City</label>
-            <input class="form-control" type="text" name="city" />
-          </div>
-        </div>
+            <div class="card-form">
+                <h2>What would you 
+                  <br>recommend to other backpackers?</h2>
+                <form action="/recommendations/create" method="post">
+                    <div class="row p-2">
+                        {{!-- title --}}
+                        <div class="col was-validated">
+                            <label>Title</label>
+                            <input class="form-control" required type="text" name="title" />
+                            <div class="invalid-feedback">Please provide a title</div>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        {{!-- description --}}
+                        <div class="col was-validated">
+                            <label>Description</label>
+                            <textarea class="form-control" required name="description" cols="30" rows="6"
+                                placeholder="Share your experience here"></textarea>
+                            <div class="invalid-feedback">Please provide a description</div>
+                        </div>
+                    </div>
+                    <div class="row p-2">
+                        {{!-- country --}}
+                        <div class="col-7">
+                            <label>Country</label>
+                            <select name="country" class="form-control">
+                                {{#each countryArr}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        {{!-- city --}}
+                        <div class="col">
+                            <label>City</label>
+                            <input class="form-control" type="text" name="city">
+                        </div>
+                    </div>
+                    <a href="/recommendation" class="btn btn-light">Cancel</a>
+                    <button class="btn btn-dark" type="submit">Create</button>
+                </form>
 
-        <!--
-        <div class="row p-1">
-          {{! date }}
-          <div class="col">
-            <label>Date from</label>
-            <input class="form-control" type="date" name="dateFrom" />
-          </div>
-          <div class="col">
-            <label>Date to</label>
-            <input class="form-control" type="date" name="dateTo" />
-          </div>
-        </div>
-        -->
-
-        <div class="row p-1">
-          {{! image }}
-          <div class="col">
-            <label>Image </label>
-            <input class="form-control" type="file" id="image" />
-          </div>
-        </div>
-        <div class="row p-1">
-          {{! creator }}
-          <div class="col was-validated">
-            <label>Creator</label>
-            <input class="form-control" required type="text" name="creator" />
-            <div class="invalid-feedback">Please provide your username</div>
-          </div>
+                {{!-- error message for validation --}}
+                {{#if errorMessage}}
+                <p class="error">{{errorMessage}}</p>
+                {{/if}}
+            </div>
         </div>
 
-      </div>
-
-      <br />
-      <a href="/recommendations" class="btn btn-light">Cancel</a>
-      <button class="btn btn-primary" type="submit">Create</button>
-    </form>
-
-    {{! error message for validation }}
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </div>
-</div>
+    </div>
+</section>
