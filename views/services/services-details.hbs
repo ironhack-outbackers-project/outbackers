@@ -1,40 +1,55 @@
 <section class="justify-content-center mt-5">
-  <div class="card rounded-4 mb-3 overflow-hidden col-8">
-    <div class="row justify-content-center align-items-stretch">
-      <div class="col-6">
-        <img class="img-fluid h-100" src="{{image}}" alt="">
-      </div>
-      <div class="col-6">
-        <div class="card-body">
+  <div class="container align-content-center">
 
-          <h2 class="mb-4">{{title}}</h2>
-          <p class="mb-4">
-            <hr />
-          <p><strong>Service type:</strong> {{serviceType}}</p>
-          <p><strong>Description:</strong> {{description}}</p>
-          <p><strong>Country:</strong> {{country}}</p>
-          <p><strong>City:</strong> {{city}}</p>
-          <p><strong>Language:</strong>{{#each language}} {{this}} {{/each}}</p>
-          <p><strong>Date:</strong> {{date}}</p>
-          <hr />
+    <div class="container-cards">
+      <div class="card-details">
+        <div class="card-header p-0">
+          <img class="img-fluid h-100" src="{{serviceDetails.image}}" alt="">
+        </div>
+        <div class="card-body p-3">
+          <h2 class="mb-3">{{serviceDetails.title}}</h2>
+          <p>Service type: {{serviceDetails.serviceType}}</p>
+          <p>Description: {{serviceDetails.description}}</p>
+          <p>Country: {{serviceDetails.country}}</p>
+          <p>City: {{serviceDetails.city}}</p>
+          <p>Language:{{#each serviceDetails.language}} {{this}} {{/each}}</p>
+          <p>Date: {{serviceDetails.date}}</p>
 
-          {{!-- if logged in --}}
+          {{!-- if logged in display creator's email --}}
           {{#if userDetails}}
-          <p><strong>Creator:</strong> {{creator.email}}</p>
+          <p>Creator: {{serviceDetails.creator.email}}</p>
 
+          {{!-- if isOwner of the post, can edit and delete --}}
+          {{#if isOwner}}
           <div class="d-flex justify-content-end">
-            <a href="/services/{{_id}}/edit" class="btn btn-light">Edit</a>
-            <form action="/services/{{_id}}/delete" method="POST">
+            <a href="/services/{{serviceDetails._id}}/edit" class="btn btn-light">Edit</a>
+            <form action="/services/{{serviceDetails._id}}/delete" method="POST">
               <button class="btn btn-dark">Delete</button>
             </form>
           </div>
+          {{/if}}
+
           {{else}}
           <h5>Sign up or login to gain access to the creator's email for further contact</h5>
           {{/if}}
-          </p>
-
         </div>
       </div>
+
+      <div class="card-details">
+        <div class="card-header p-3">
+          <h2>Be in touch</h2>
+        </div>
+        <div class="card-body p-3 d-flex">
+          <form action="">
+            <div>
+              <label>Email</label>
+            <input class="form-control" type="email" name="" id="">
+            </div>
+            <div>
+              <label>Write a personalised message</label>
+            <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+            </div>
+          </form>
+
     </div>
-  </div>
 </section>

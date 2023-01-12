@@ -93,7 +93,10 @@ router.get("/services/:id", (req, res, next) => {
   Service.findById(id)
     .populate({ path: 'creator', select: '-password' })
     .then((serviceDetails) => {
-      res.render("services/services-details", serviceDetails);
+
+      const isOwner = req.session.currentUser._id === serviceDetails.creator._id.toString();
+    
+      res.render("services/services-details", {serviceDetails, isOwner});
     })
     .catch((error) => {
       console.log("Error displaying details of a specific service", error);
