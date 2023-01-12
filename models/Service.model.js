@@ -17,7 +17,7 @@ const serviceSchema = new Schema(
         date: String,
         image: {
             type: String,
-            default: 'https://as2.ftcdn.net/v2/jpg/02/54/55/77/1000_F_254557722_4bmBGPcKz6pniGAUcCumA3j8PMTBRgbM.jpg',
+            default: 'https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         },
         creator: {
             type: Schema.Types.ObjectId,

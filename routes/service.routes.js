@@ -54,7 +54,7 @@ router.get("/services/create", isLoggedIn, (req, res, next) => {
     })
     .catch((error) => {
       console.log("Error displaying form", error);
-      next();
+      next(error);
     });
 });
 
@@ -93,38 +93,31 @@ router.get("/services/:id", (req, res, next) => {
   Service.findById(id)
     .populate({ path: 'creator', select: '-password' })
     .then((serviceDetails) => {
-
-      const isOwner = req.session.currentUser._id === serviceDetails.creator._id.toString();
-    
-      res.render("services/services-details", {serviceDetails, isOwner});
+      const isOwner = req.session?.currentUser?._id === serviceDetails.creator._id.toString();
+      
+      res.render("services/services-details", {
+        serviceDetails: serviceDetails,
+        isOwner: isOwner
+      });
     })
     .catch((error) => {
       console.log("Error displaying details of a specific service", error);
-      next();
+      next(error);
     });
 });
 
-// UPDATE COMMENT: 
+// UPDATE: Comment
 router.post("/services/:id", isLoggedIn, (req, res, next) => {
   const { id } = req.params;
-  const { comment } =
-  req.body;
+  const { comment } = req.body;
 
-  Service.findByIdAndUpdate(id,
-    {
-      $push: {comments: {message:comment, creator: req.session.currentUser._id}}
-    },
-    { new: true }
-  )
+  Service.findByIdAndUpdate(id, {$push: {comments: {message: comment, creator: req.session.currentUser._id}}}, { new: true })
     .then(() => {
       res.redirect(`/services/${id}`);
     })
     .catch((error) => {
-      console.log(
-        "Error displaying new comment",
-        error
-      );
-      next();
+      console.log("Error displaying new comment", error);
+      next(error);
     });
 });
 
@@ -173,7 +166,7 @@ router.get("/services/:id/edit", isCreator, (req, res, next) => {
     })
     .catch((error) => {
       console.log("Error displaying form for editing", error);
-      next();
+      next(error);
     });
 });
 
@@ -201,7 +194,7 @@ router.post("/services/:id/edit", isCreator, (req, res, next) => {
     .then(() => res.redirect(`/services/${id}`))
     .catch((error) => {
       console.log("Error displaying form for editing", error);
-      next();
+      next(error);
     });
 });
 
