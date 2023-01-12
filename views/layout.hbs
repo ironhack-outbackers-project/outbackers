@@ -21,53 +21,39 @@
 
   {{!-- nav bar --}}
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-        <a class="navbar-brand" href="/"><img src="https://cdn-icons-png.flaticon.com/512/71/71423.png" alt="Logo" width="30" height="25" class="d-inline-block align-text-top" />Outbackers</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
-
-            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/services">Services</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/recommendations">Recommendations</a></li>
-
-          </ul>
-
-          {{#if userDetails}} 
-          {{!-- dropdown menu --}}
-            <li class="nav-item"><li class="nav-item dropdown p-3">
-            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create</a>
-              
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/services/create">New Service</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="/recommendations/create">New Recommendation</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-text"> Welcome back {{userDetails.email}} |</li>
-
-          <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/logout">Logout</a>
-          {{else}}
-          <span>
+        <a class="navbar-brand p-3 tag" href="/" style="color: #f02b63;">Outbackers</a>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li>
-                <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/signup">Signup</a> |
-              </li>
-              <li>
-                <a class="btn btn-default navbar-btn" aria-current="page" href="/auth/login">Login</a>
-              </li>
+              <li class="nav-item"><a class="nav-link active p-3 tag" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link active p-3 tag" href="/services">Services</a></li>
+              <li class="nav-item"><a class="nav-link active p-3 tag" href="/recommendations">Recommendations</a></li>
             </ul>
-          </span>
-          {{/if}}
-          
+
+            {{!-- dropdown menu --}}
+            {{#if userDetails}}
+              <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle tag p-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item tag" href="/services/create">New Service</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item tag" href="/recommendations/create">New Recommendation</a></li>
+                </ul>
+              </li>
+
+              <span class="navbar-text tag p-3"> Welcome back {{userDetails.username}}</span>
+              <span><a class="nav-link active tag p-3" href="/auth/logout">Logout</a></span>
+            {{else}}
+            <span><a class="nav-link active tag p-2" href="/auth/login">Login</span>
+            <span><a class="nav-link active tag p-2" href="/auth/signup">Signup</a></span>
+            {{/if}}
+          </div>
       </div>
     </nav>
-
-</header>
+  </header>
 
   {{{body}}}
 
