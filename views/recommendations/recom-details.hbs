@@ -12,23 +12,23 @@
           <p><strong>Country:</strong> {{country}}</p>
           <p><strong>Description:</strong> {{description}}</p>
           <hr />
-          <p><strong>Creator:</strong> {{creator}}</p>
+
 
           {{!-- if logged in display creator's email --}}
           {{#if userDetails}}
-          <p>Creator: {{serviceDetails.creator.email}}</p>
+
 
           {{!-- if isOwner of the post, can edit and delete --}}
-          {{#if isOwner}}
-          <div class="d-flex justify-content-end">
-            <a href="/services/{{serviceDetails._id}}/edit" class="btn btn-light">Edit</a>
-            <form action="/services/{{serviceDetails._id}}/delete" method="POST">
-              <button class="btn btn-dark">Delete</button>
-            </form>
-          </div>
-          {{/if}}
+          {{!#if isOwner}}
+            <div class="d-flex justify-content-end">
+              <a href="/recommendations/{{_id}}/edit" class="btn btn-light">Edit</a>
+              <form action="/recommendations/{{_id}}/delete" method="POST">
+                <button class="btn btn-dark">Delete</button>
+              </form>
+            </div>
+            {{/if}}
 
-          {{/if}}
+          {{!/if}}
 
         </div>
       </div>
@@ -37,6 +37,7 @@
       <div class="card-comment">
         <div class="card-header">
           <h4 class="card-title">Other backpackers have said ...</h4>
+          <br>
           {{!-- if there are comments, where it will be displayed --}}
           {{#if comments}}
           {{#each comments}}
