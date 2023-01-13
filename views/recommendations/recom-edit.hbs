@@ -9,7 +9,7 @@
                         {{!-- title --}}
                         <div class="col was-validated">
                             <label>Title</label>
-                            <input class="form-control" required type="text" name="title" />
+                            <input class="form-control" required type="text" name="title" value="{{recommendations.title}}"/>
                             <div class="invalid-feedback">Please provide a title</div>
                         </div>
                     </div>
@@ -18,7 +18,7 @@
                         <div class="col was-validated">
                             <label>Description</label>
                             <textarea class="form-control" required name="description" cols="30" rows="6"
-                                placeholder="Share your experience here"></textarea>
+                                placeholder="Share your experience here">{{recommendations.description}}</textarea>
                             <div class="invalid-feedback">Please provide a description</div>
                         </div>
                     </div>
@@ -26,11 +26,16 @@
                         {{!-- country --}}
                         <div class="col-7">
                             <label>Country</label>
-                            <select name="country" class="form-control" value="{{recommendations.country}}">
+                            
+                                
+                                <select class="form-control" name="country" value="{{recommendations.country}}">
+                                <option selected value="{{currentCountry}}">{{currentCountry}}</option>
                                 {{#each countryArr}}
                                 <option value="{{this}}">{{this}}</option>
                                 {{/each}}
                             </select>
+                                
+                                
                         </div>
                         {{!-- city --}}
                         <div class="col">
@@ -41,13 +46,13 @@
                     <div class="row p-2 mb-3">
                         {{!-- date --}}
                         <div class="col">
-                            <label>Date</label>
-                            <input class="form-control" name="date" type="text" value="01/01/2023 - 02/01/2023" />
+                            <a href="/recommendation" class="btn btn-light">Cancel</a>
+                            <button class="btn btn-dark" type="submit">Update</button>
                         </div>
+                    
                     </div>
 
-                    <a href="/recommendation" class="btn btn-light">Cancel</a>
-                    <button class="btn btn-dark" type="submit">Create</button>
+
                 </form>
 
                 {{!-- error message for validation --}}

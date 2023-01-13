@@ -75,7 +75,7 @@ router.post("/recommendations/create", isLoggedIn, (req, res, next) => {
     });
 });
 
-// READ: Services details of a specific service
+// READ: Recommendation details of a specific recommendation
 router.get("/recommendations/:id", (req, res, next) => {
   const { id } = req.params;
 
@@ -124,7 +124,10 @@ router.post("/recommendations/:id", isLoggedIn, (req, res, next) => {
 router.get("/recommendations/:id/edit", isCreator, (req, res, next) => {
   const { id } = req.params;
 
+  console.log(id);
+
   Recom.findById(id)
+
     .then((editRecommendation) => {
       // dropdown list of country selected
       const currentCountry = countryArr.find((countryName) => {
