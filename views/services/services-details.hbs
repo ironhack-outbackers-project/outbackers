@@ -18,7 +18,7 @@
 
           {{!-- if logged in display creator's email --}}
           {{#if userDetails}}
-          <p>Creator: {{serviceDetails.creator.email}}</p>
+          <p>Who posted it: {{serviceDetails.creator.username}}</p>
 
           {{!-- if isOwner, can edit and delete --}}
           {{#if isOwner}}
@@ -37,14 +37,14 @@
 
       <div class="card-comment p-3">
         <div class="card-header">
-          <h4 class="card-title">Leave a comment</h4>
+          <h2 class="card-title">Leave a comment</h2>
           <br>
           {{!-- if there are comments, where it will be displayed --}}
           {{#if serviceDetails.comments}}
           {{#each serviceDetails.comments}}
           <p>{{username}}: {{message}}</p>
           {{/each}}
-          <br>
+         
           {{/if}}
 
           {{!writing a new comment}}
