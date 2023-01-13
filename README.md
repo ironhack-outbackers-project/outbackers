@@ -24,4 +24,4 @@ To run the application, run the following command:
 npm run dev
 ```
 ## Demo
-[Check it out] (https://outbackers.adaptable.app/)
+[Check it out](https://outbackers.adaptable.app)
