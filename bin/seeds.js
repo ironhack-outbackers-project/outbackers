@@ -94,7 +94,7 @@ const recommendations = [
       "Don't look anybody in the eyes because it could offend them. They are very proud people.",
     country: "Italy",
     city: "Napoli",
-    image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
+    image: "https://images.unsplash.com/photo-1492462543947-040389c4a66c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
     creator: "63b7fcc02b4e16ab17033fe2",
   },
   {
@@ -105,7 +105,7 @@ const recommendations = [
       "Don't look anybody in the eyes because it could offend them. They are very proud people.",
     country: "Colombia",
     city: "Medellin",
-    image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
+    image: "https://images.unsplash.com/photo-1492462543947-040389c4a66c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
     creator: "63b7fcc02b4e16ab17033fe2",
   },
   {
@@ -116,7 +116,7 @@ const recommendations = [
       "You can take the caipirinha and walk to be beach: absolutely lovely!",
     country: "Brazil",
     city: "Ubatuba",
-    image: "https://cdn-icons-png.flaticon.com/512/834/834096.png",
+    image: "https://images.unsplash.com/photo-1492462543947-040389c4a66c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
     creator: "63b7fcc02b4e16ab17033fe2",
   },
 ];
