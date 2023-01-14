@@ -24,12 +24,9 @@ router.get("/services", (req, res, next) => {
   }
 
   if(country) {
-    const capitalizeCountry = country[0].toUpperCase() + country.slice(1)
-    filter = {country: {$eq: capitalizeCountry}}
-
-    console.log(capitalizeCountry)
+    const includesCountry = countryArr.filter(countryArr => countryArr.toLowerCase().includes(country.toLowerCase()))
+    filter = {country: {$in: includesCountry}}
   }
-  
 
   Service.find(filter)
     .then((servicesFromDB) => {
